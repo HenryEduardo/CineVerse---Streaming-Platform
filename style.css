@@ -1,0 +1,721 @@
+:root {
+    --bg-dark: #07080E;
+    --bg-main: #0B0C12;
+    --bg-card: #131520;
+    --accent-blue: #2563EB;
+    --text-white: #FFFFFF;
+    --text-muted: #6B7280;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+}
+
+/* --- ASIDE: BARRA LATERAL --- */
+
+.container-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 3rem;
+    text-decoration: none;
+}
+
+.container-logo,
+.container-logo * {
+    text-decoration: none !important;
+}
+
+.container-logo p a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.container-logo .logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-blue);
+    border-radius: 8px;
+}
+
+.container-logo .text-logo {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 0 0 auto;
+}
+
+.container-logo .text-logo-2{
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: 'inter-bold', Helvetica;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 28px;
+    white-space: nowrap;
+}
+
+.container-logo .text-wrapper {
+    color: var(--text-white);
+        letter-spacing: 1px;
+}
+
+.container-logo .span {
+    color: var(--accent-blue);
+        letter-spacing: 1px;
+}
+
+
+.sidebar {
+    width: 260px;
+    background-color: #05060A;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #11131F;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.menu-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.menu-item {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.menu-item i {
+
+    padding: 0.8rem 1rem;
+}
+
+.menu-item.active {
+    background-color: var(--accent-blue);
+    color: var(--text-white);
+}
+
+.menu-item:hover:not(.active) {
+    background-color: #11131F;
+    color: var(--text-white);
+}
+
+.premium-badge {
+    margin-top: auto;
+    background-color: #0E1017;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid #1E293B;
+}
+
+.premium-status {
+    color: #10B981;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.premium-text {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+
+
+
+/* --- MAIN: CONTENIDO PRINCIPAL --- */
+.main-content {
+    /* flex: 1;
+    margin-left: 260px;
+    padding: 2rem 3rem;
+    background: linear-gradient(180deg, #0A0B10 0%, #06070A 100%);
+    min-width: 0;
+    overflow: hidden; */
+
+    flex: 1;
+    margin-left: 260px;
+    padding: 2rem 3rem;
+    background: linear-gradient(180deg, #0A0B10 0%, #06070A 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    /* 🛠️ OPCIONAL: Asegura la distribución interna si usas monitores Ultra-Wide */
+    justify-content: flex-start;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.section-movies {
+    max-width: 1600px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
+    justify-self: center;
+}
+
+/* SEARCH */
+
+/* .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+} */
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    /* Separa el bloque izquierdo del derecho */
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-box {
+    position: relative;
+    width: 350px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.search-box input {
+    width: 350px;
+    padding: 0.7rem 1.2rem 0.7rem 2.5rem;
+    background-color: #0E1017;
+    border: 1px solid #1E293B;
+    border-radius: 20px;
+    color: white;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.search-box input:focus {
+    border: 1px solid rgb(from var(--accent-blue) r g b / 0.5)
+        /* Cambia el color del borde al hacer foco */
+}
+
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* icon campana */
+
+.button-notifications {
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    height: 44px;
+    align-items: flex-start;
+    padding: 0px 0px 0px 16px;
+    position: relative;
+}
+
+.button-notifications .div {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #0E1017;
+    border-radius: 12px;
+    border: 1px solid;
+    border-color: #1E293B;
+    cursor: pointer;
+}
+
+.button-notifications .div:hover {
+    border-color: rgba(255, 255, 255, 0.2)
+}
+
+.button-notifications .SVG {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.button-notifications .vector {
+    position: absolute;
+    width: 91.25%;
+    height: 95.42%;
+    top: 4.58%;
+    left: 8.75%;
+}
+
+.button-notifications .img {
+    position: absolute;
+    width: 62.08%;
+    height: 16.25%;
+    top: 83.75%;
+    left: 37.92%;
+}
+
+.button-notifications .background-border {
+    position: absolute;
+    top: 9px;
+    right: 0;
+    width: 8px;
+    height: 8px;
+}
+
+.point-box {
+    top: 8px;
+    right: 8px;
+    position: absolute;
+}
+
+/* FINAL icon campana */
+
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-icon-nav {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.avatar {
+    /* background-color: #4F46E5; */
+    background: linear-gradient(145deg,
+            rgba(81, 162, 255, 1) 0%,
+            rgba(97, 95, 255, 1) 50%,
+            rgba(127, 34, 254, 1) 100%);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* --- CONTAINER GENERAL --- */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+/* --- SECTION 1: Próximo Estreno --- */
+.section-hero {
+    background: linear-gradient(90deg, rgba(7, 8, 14, 0.95) 30%, rgba(7, 8, 14, 0.1) 100%),
+        url('assets/avengers-banner_ok.png') center/cover;
+    border-radius: 16px;
+    padding: 3.5rem;
+    border: 1px solid #161926;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 1600px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
+    justify-self: center;
+}
+
+.hero-content {
+    max-width: 550px;
+}
+
+.hero-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+
+
+
+.badge-trend {
+    font-size: 0.75rem;
+    /* background-color: rgba(37, 99, 235, 0.2); */
+    background-color: var(--accent-blue);
+    /* color: #60A5FA; */
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+
+.hero-title {
+    font-size: 2.8rem;
+    margin: 1rem 0 0.5rem 0;
+    font-weight: 700;
+}
+
+.hero-description {
+    color: #9CA3AF;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+.p-description {
+    display: flex;
+    flex-direction: column;
+    max-width: 560px;
+    align-items: flex-start;
+    position: relative;
+
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-play {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-play a {
+    text-decoration: none;
+    color: white;
+}
+
+.btn-play:hover {
+    /* background-color: rgb(from var(--accent-blue) r g b / 0.5) */
+    background-color: #3c79fc;
+    /* Cambia el color del borde al hacer foco */
+    ;
+    color: white;
+}
+
+.btn-add {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* --- SECTION 2: Películas Populares --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    color: var(--accent-blue);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.main-section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 0.25rem;
+}
+
+.view-all {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* Filtros */
+.filter-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.btn-filter {
+    background-color: #11131F;
+    color: var(--text-muted);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-filter.active {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+/* CUADRÍCULA RESPONSIVA */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+/* Estilos de las tarjetas dinámicas creadas por JS */
+.movie-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 0.75rem;
+    border: 1px solid #1F2335;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.poster-container {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 0.75rem;
+}
+
+.movie-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-card img:hover {
+    transform: scale(1.04);
+    transition: all 0.3s ease;
+}
+
+.rating-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: rgba(11, 12, 18, 0.8);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #F59E0B;
+}
+
+.movie-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-card:hover {
+    color: var(--accent-blue);
+    transition: all 0.3s ease;
+}
+
+.movie-info {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+
+/* --- BOTÓN HAMBURGUESA (Oculto por defecto en monitores) --- */
+.hamburger-menu {
+    display: none;
+    position: fixed;
+    top: 1.2rem;
+    left: 1.2rem;
+    background-color: var(--bg-card);
+    color: white;
+    border: 1px solid #1F2335;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    z-index: 1000;
+    /* Asegura que siempre esté por encima de todo */
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    position: relative;
+    /* O absolute / fixed según tu diseño */
+    z-index: 9999 !important;
+}
+
+@media (max-width: 1024px) {
+
+    /* El botón hamburguesa ya no flota libre, se alinea en el flex */
+    .hamburger-menu {
+        display: block;
+        position: static;
+        /* Quita la posición fija anterior */
+        background-color: var(--bg-card);
+        color: white;
+        border: 1px solid #1F2335;
+        border-radius: 8px;
+        font-size: 1.4rem;
+        padding: 0.4rem 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* Escondemos el Aside fuera de la pantalla */
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1005;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* Ajustamos el contenido general */
+    .main-content {
+        margin-left: 0;
+        padding: 1.5rem 1.5rem;
+        /* Reducimos el espacio superior ya que no hay botón flotante */
+
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    /* EL TRUCO MAGICO: Alineamos todo el menú superior en la misma recta */
+    .top-header {
+        display: flex;
+        flex-direction: row;
+        /* Fuerza a que todo se quede en una sola fila */
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 2.5rem;
+        gap: 1rem;
+    }
+
+    /* Agrupa la hamburguesa y el buscador a la izquierda */
+    /* .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 1;
+        max-width: 70%;
+    } */
+
+    .header-left {
+        max-width: auto;
+        flex: 0;
+    }
+
+    .header-right {
+        flex: 1;
+        justify-content: flex-end;
+        max-width: 85%;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 0.7rem 1.2rem 0.7rem 2.5rem;
+    }
+
+    .user-profile {
+        gap: 0.75rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        font-size: 0.75rem;
+    }
+
+    .badge-trend {
+        font-size: 0.7rem;
+    }
+
+    .hero-content .span-date {
+        font-size: 0.7rem;
+        padding-bottom: 0px;
+        border-top-width: 5px;
+        padding-top: 5px;
+    }
+
+}

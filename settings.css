@@ -1,0 +1,546 @@
+/* DISEÑO DE LA CUADRÍCULA DE CONFIGURACIÓN */
+
+.section-title-area {
+    padding: 20px 0 20px 0;
+}
+.sub-subtitle{
+    color: #3b82f6;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.description{
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+.main-title{
+    padding: 10px 0 10px 0;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+/* TARJETAS CONTENEDORAS COMPLETA */
+.settings-card {
+    background-color: #0e1322;
+    /* Tono azul oscuro de los paneles */
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ENCABEZADOS DE TARJETA INTERNOS */
+.card-header-inline {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1rem;
+}
+
+.card-icon-wrapper {
+    background-color: rgba(37, 99, 235, 0.1);
+    color: #3b82f6;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f3f4f6;
+}
+
+.card-subtitle {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-top: 0.15rem;
+}
+
+/* SECCIÓN EDITAR FOTO DE PERFIL */
+
+.ico {
+    width: 19px;
+    height: 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0
+}
+
+.ico svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round
+}
+
+.badge {
+    color: #42a6ff;
+    border: 1px solid #1a3768;
+    background: #101e36;
+    border-radius: 13px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.profile-edit-area {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.large-avatar {
+    color: white;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.avatar-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.btn-secondary-sm{
+    background-color: #0e1322;
+    color: #3b82f6;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+/* FORMULARIOS DE PERFIL EN FILA COPIANDO LA CAPTURA */
+.form-row-split {
+    display: flex;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.form-row-split .form-group {
+    flex: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.settings-form input,
+.settings-select {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.85rem 1rem;
+    border-radius: 0.5rem;
+    color: #f3f4f6;
+    outline: none;
+    font-size: 0.95rem;
+    width: 100%;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.settings-form input:focus,
+.settings-select:focus {
+    border-color: #2563eb;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ACCIONES DEL FORMULARIO */
+.form-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.btn-text-link {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+}
+
+.btn-text-link:hover {
+    color: #f3f4f6;
+}
+
+.btn-save {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.85rem 1.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-save:hover {
+    background-color: #3b82f6;
+}
+
+/* CAJA DE INFORMACIÓN DEL PLAN PREMIUM */
+.plan-info-box {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+}
+
+.plan-label-tag {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #3b82f6;
+    letter-spacing: 1px;
+}
+
+.plan-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.35rem 0;
+}
+
+.plan-main-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.status-badge-online {
+    color: #10b981;
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.plan-date {
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+/* FILA DE CARACTERÍSTICAS TÉCNICAS (PLAN SPECS) */
+.plan-specs-row {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.spec-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.spec-item:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spec-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f3f4f6;
+}
+
+.spec-desc {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.btn-premium-manage {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.btn-premium-manage:hover {
+    background-color: #3b82f6;
+}
+
+/* FILAS DE INTERRUPTORES (PREFERENCIAS) */
+.preference-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preference-row h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.pref-desc {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+
+
+.toggle {
+    width: 48px;
+    height: 28px;
+    border: 1px solid #364155;
+    border-radius: 30px;
+    background: #202c40;
+    padding: 4px;
+    cursor: pointer;
+    display: inline-block;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    /* Transición suave para el color de fondo cuando cambia el estado */
+    transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle:before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    margin-left: 0;
+    /* Estado inicial apagado */
+    /* Transición elástica avanzada para el movimiento de la bolita blanca */
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estado Activo (.on) */
+.toggle.on {
+    background: #145aff;
+    border-color: #4083ff;
+}
+
+.toggle.on:before {
+    margin-left: 19px;
+}
+
+
+
+
+/* SECCIÓN SEGURIDAD / DISPOSITIVOS */
+.device-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.device-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.01);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.device-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.device-icon-box {
+    color: #9ca3af;
+    font-size: 1.35rem;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.device-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.current-session-tag {
+    font-size: 0.75rem;
+    color: #3b82f6;
+    font-weight: normal;
+}
+
+.device-location-status {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    display: block;
+    margin-top: 0.15rem;
+}
+
+.session-active-text {
+    color: #10b981;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding-right: 0.5rem;
+}
+
+.btn-logout-device {
+    background-color: transparent;
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 0.45rem 0.85rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-logout-device:hover {
+    background-color: rgba(239, 68, 68, 0.08);
+    border-color: #ef4444;
+}
+
+/* IDENTIFICADOR DE CUENTA EN EL PIE DE PÁGINA */
+.settings-footer-account {
+    text-align: center;
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.settings-footer-account p {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    letter-spacing: 0.5px;
+}
+
+
+/* ==========================================================================
+   MEDIA QUERIES PARA ADAPTABILIDAD TOTAL (RESPONSIVE DESIGN)
+   ========================================================================== */
+
+/* 📱 Dispositivos medianos y Tablets (Pantallas menores a 768px) */
+@media (max-width: 768px) {
+    .settings-grid {
+        /* Bajamos el mínimo a 100% para que la tarjeta ocupe todo el ancho del celular */
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .settings-card {
+        padding: 1.25rem;
+        /* Reducimos el margen interno para ganar espacio */
+    }
+
+    .main-title {
+        font-size: 2rem;
+        /* Achicamos un poco el título principal */
+    }
+
+    /* Convertimos las dos columnas de inputs en una sola fila vertical */
+    .form-row-split {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* 📲 Celulares pequeños (Pantallas menores a 480px) */
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.75rem;
+    }
+
+    /* Ajustamos el bloque de características de la suscripción */
+    .plan-specs-row {
+        flex-direction: column;
+        /* Apila las características en vertical */
+        gap: 0.75rem;
+        align-items: flex-start;
+        padding: 0.85rem;
+    }
+
+    .spec-item {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .spec-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        /* Línea divisoria inferior */
+        padding-bottom: 0.5rem;
+    }
+
+    /* Alineamos el botón de cambiar contraseña y guardar perfil */
+    .form-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+    }
+
+    .btn-save {
+        width: 100%;
+        /* El botón ocupa todo el ancho de la pantalla */
+        text-align: center;
+    }
+
+    /* Ajustamos la fila de idiomas de preferencias */
+    .language-row-split {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .select-wrapper {
+        width: 100%;
+    }
+
+    /* Ajustamos la lista de dispositivos conectados */
+    .device-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .btn-logout-device {
+        width: 100%;
+        text-align: center;
+    }
+}

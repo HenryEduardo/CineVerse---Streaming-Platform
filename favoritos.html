@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVerse - Streaming Platform</title>
+
+    <!-- Font Awesome 6 (CDN oficial vía cdnjs) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="favoritos.style.css">
+</head>
+
+<body>
+
+    <!-- ASIDE: Barra lateral izquierda -->
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="container-logo">
+            <div class="logo-box">
+                <svg class="logo-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5 3.33331H15C16.3807 3.33331 17.5 4.4526 17.5 5.83331V14.1666C17.5 15.5474 16.3807 16.6666 15 16.6666H5C3.61929 16.6666 2.5 15.5474 2.5 14.1666V5.83331C2.5 4.4526 3.61929 3.33331 5 3.33331V3.33331"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+                    <path
+                        d="M5.83333 3.33331V16.6666M14.1667 3.33331V16.6666M2.5 7.49998H5.83333M14.1667 7.49998H17.5M2.5 12.5H5.83333M14.1667 12.5H17.5"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+                </svg>
+            </div>
+            <div class="text-logo">
+                <p class="text-logo-2"><span class="text-wrapper">Cine</span><span class="span">Verse</span></p>
+            </div>
+        </a>
+        <nav class="menu">
+            <p class="menu-label">MENU</p>
+            <a href="index.html" class="menu-item"><i class="fa-solid fa-house"></i>Inicio</a>
+            <a href="explore.html" class="menu-item"><i class="fa-solid fa-compass"></i>Explora</a>
+            <a href="favoritos.html" class="menu-item active"><i class="fa-solid fa-heart"></i>Favoritos</a>
+            <a href="settings.html" class="menu-item"><i class="fa-solid fa-gear"></i>Settings</a>
+        </nav>
+        <div class="premium-badge">
+            <p class="premium-status">● Premium active</p>
+            <p class="premium-text">Unlimited movies and shows in stunning 4K.</p>
+        </div>
+    </aside>
+
+    <!-- MAIN: Bloque contenedor de la derecha -->
+    <main class="main-content">
+
+        <!-- HEADER CORREGIDO -->
+        <header class="top-header">
+            <div class="header-right">
+                <button class="hamburger-menu" id="hamburger-btn">☰</button>
+
+                <div class="search-box">
+                    <!-- Corregido: Se quitó el ID duplicado de la imagen -->
+                    <img class="search-icon" id="search-icon-img" src="assets/search.svg" alt="search">
+                    <input type="text" id="global-search" placeholder="Search movies, TV shows...">
+                </div>
+            </div>
+
+            <!-- CAMPANA Y PERFIL-->
+            <div class="user-profile">
+                <div class="button-notifications">
+                    <div class="div">
+                        <svg class="search-box" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15 6.66669C15 3.90711 12.7596 1.66669 10 1.66669C7.24042 1.66669 5 3.90711 5 6.66669C5 12.5 2.5 12.5 2.5 14.1667H17.5C17.5 12.5 15 12.5 15 6.66669V6.66669"
+                                stroke="#CAD5E2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8.33337 17.5H11.6667" stroke="#CAD5E2" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg class="point-box" width="8" height="8" viewBox="0 0 8 8" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="6" height="6" rx="3" fill="#2B7FFF" stroke="#020618"
+                                stroke-width="1" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="avatar">AM</div>
+            </div>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL -->
+
+        <!-- SUB-ENCABEZADO DE LA SECCIÓN -->
+        <section class="section-title-area">
+            <span class="sub-subtitle"><i class="fa-solid fa-heart"></i> TU COLECCIÓN PERSONAL</span>
+            <h1 class="main-title">Favoritos</h1>
+            <p class="description">10 historias que te encantaron, todas en un mismo lugar.</p>
+
+            <!-- FILTROS Y CONTADOR -->
+            <div class="filters-row">
+                <div class="filter-tabs">
+                    <button class="tab active" data-filter="all">All</button>
+                    <button class="tab" data-filter="movie">Movies</button>
+                    <button class="tab" data-filter="series">Series</button>
+                </div>
+                <div class="counter-badge">
+                    <i class="fa-solid fa-star"></i> <span id="total-count">10</span> Ítems guardados
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENEDOR GRID DE LAS TARJETAS -->
+        <section class="movies-grid" id="movies-container">
+            <!-- Las tarjetas serán renderizadas de forma dinámica por JS -->
+        </section>
+
+    </main>
+
+
+
+    <!-- MODAL DEL REPRODUCTOR DE VIDEO CORREGIDO -->
+    <div id="video-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal-btn">&times;</button>
+            <div class="video-container">
+                <iframe id="modal-video-player" src="" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+
+                <!-- Pantalla de carga simulada para la película completa -->
+                <div id="movie-loading-screen" class="loading-overlay" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Cargando película completa en 4K Ultra HD...</p>
+                </div>
+            </div>
+            <div class="modal-info">
+                <div class="modal-header-split">
+                    <div>
+                        <h2 id="modal-video-title">Título de la Película</h2>
+                        <p id="modal-video-meta">Año • Género</p>
+                    </div>
+
+                    <!-- NUEVO: Botón para simular la película completa -->
+                    <button id="play-full-movie-btn" class="btn-full-movie">
+                        <i class="fa-solid fa-film"></i> Ver película completa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Enlace a la lógica de programación -->
+    <script src="global.js"></script>
+    <script src="favoritos.js"></script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVerse - Streaming Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="explore.style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ASIDE: Barra lateral izquierda -->
+    <aside class="sidebar" id="sidebar">
+        <!-- El resto del contenido de tu aside se queda EXACTAMENTE IGUAL -->
+        <a href="index.html" class="container-logo">
+            <div class="logo-box">
+                <svg class="logo-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5 3.33331H15C16.3807 3.33331 17.5 4.4526 17.5 5.83331V14.1666C17.5 15.5474 16.3807 16.6666 15 16.6666H5C3.61929 16.6666 2.5 15.5474 2.5 14.1666V5.83331C2.5 4.4526 3.61929 3.33331 5 3.33331V3.33331"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+                    <path
+                        d="M5.83333 3.33331V16.6666M14.1667 3.33331V16.6666M2.5 7.49998H5.83333M14.1667 7.49998H17.5M2.5 12.5H5.83333M14.1667 12.5H17.5"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+                </svg>
+            </div>
+            <div class="text-logo">
+                <p class="text-logo-2"><span class="text-wrapper">Cine</span><span class="span">Verse</span></p>
+            </div>
+        </a>
+        <nav class="menu">
+            <p class="menu-label">MENU</p>
+            <a href="index.html" class="menu-item"><i class="fa-solid fa-house"></i>Inicio</a>
+            <a href="explore.html" class="menu-item active"><i class="fa-solid fa-compass"></i>Explora</a>
+            <!-- <a href="#" class="menu-item">Lista de seguimiento</a> -->
+            <a href="favoritos.html" class="menu-item"><i class="fa-solid fa-heart"></i>Favoritos</a>
+            <a href="settings.html" class="menu-item"><i class="fa-solid fa-gear"></i>Settings</a>
+        </nav>
+        <div class="premium-badge">
+            <p class="premium-status">● Premium active</p>
+            <p class="premium-text">Unlimited movies and shows in stunning 4K.</p>
+        </div>
+    </aside>
+
+    <!-- MAIN: Bloque contenedor de la derecha -->
+    <main class="main-content">
+
+        <!-- HEADER CORREGIDO: Ahora contiene el botón hamburguesa -->
+        <header class="top-header">
+            <div class="header-right">
+                <!-- Verifica que tenga el id="hamburger-btn" exacto -->
+                <button class="hamburger-menu" id="hamburger-btn">☰</button>
+
+                <div class="search-box">
+                    <!-- <span class="search-icon">🔍</span> -->
+                    <img class="search-icon" id="search-icon-img" src="assets/search.svg" alt="search">
+                    <input type="text" id="global-search" placeholder="Search movies, TV shows...">
+                </div>
+            </div>
+
+            <!-- CAMPANA Y PERFIL-->
+            <div class="user-profile">
+                <!-- <button class="btn-icon-nav">🔔
+                </button> -->
+                <div class="button-notifications">
+                    <div class="div">
+                        <svg class="search-box" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15 6.66669C15 3.90711 12.7596 1.66669 10 1.66669C7.24042 1.66669 5 3.90711 5 6.66669C5 12.5 2.5 12.5 2.5 14.1667H17.5C17.5 12.5 15 12.5 15 6.66669V6.66669"
+                                stroke="#CAD5E2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8.33337 17.5H11.6667" stroke="#CAD5E2" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg class="point-box" width="8" height="8" viewBox="0 0 8 8" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="6" height="6" rx="3" fill="#2B7FFF" stroke="#020618"
+                                stroke-width="1" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="avatar">AM</div>
+            </div>
+        </header>
+
+
+        <!-- El resto del código de tu .container (Section 1 y Section 2) se queda EXACTAMENTE IGUAL -->
+
+
+        <!-- CONTAINER: Agrupa tus dos secciones -->
+        <div class="container-explore">
+
+            <!-- BLOQUE 1: Títulos y Selectores -->
+            <header class="explore-intro-header">
+                <div class="explore-titles">
+                    <span class="explore-subtitle">ENCUENTRA TU PRÓXIMA HISTORIA</span>
+                    <h1 class="explore-main-title">Explora</h1>
+                    <p class="explore-description">Explora una selección de cine cuidadosamente elegida, éxitos
+                        mundiales e
+                        historias seleccionadas según tus gustos.</p>
+                </div>
+
+                <div class="explore-selects-group">
+                    <div class="select-wrapper">
+                        <label>YEAR</label>
+                        <select id="filter-year">
+                            <option>All years</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                        </select>
+                    </div>
+                    <div class="select-wrapper">
+                        <label>GENRE</label>
+                        <select id="filter-genre">
+                            <option>All genres</option>
+                            <option>Action</option>
+                            <option>Comedy</option>
+                            <option>Horror</option>
+                            <option>Anime</option>
+                        </select>
+                    </div>
+                    <div class="select-wrapper">
+                        <label>RATING</label>
+                        <select id="filter-rating">
+                            <option>Any rating</option>
+                            <option>1 star</option>
+                            <option>2 stars</option>
+                            <option>3 stars</option>
+                            <option>4 stars</option>
+                            <option>5 stars</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+
+            <!-- BLOQUE 2: Tarjetas de Categorías Rápidas -->
+            <section class="section-genres-cards">
+                <div class="genre-card genre-card-action">
+                    <!--<div class="genre-icon">⚡</div>-->
+                    <div class="genre-icon">
+                        <svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.25 0.750061L0.75 10.7501H6.58333L5.75 17.4167L13.25 7.41673H7.41667L8.25 0.750061Z"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#FF8904" />
+                        </svg>
+
+                    </div>
+                    <div class="genre-info">
+                        <h3>Action</h3>
+                        <p>High stakes</p>
+                    </div>
+                    <span class="genre-arrow">❯</span>
+                </div>
+                <div class="genre-card genre-card-comedy">
+                    <!-- <div class="genre-icon">😄</div> -->
+                    <div class="genre-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#FFD230" />
+                            <path
+                                d="M6.66669 11.6667C6.66669 11.6667 7.91669 13.3333 10 13.3333C12.0834 13.3333 13.3334 11.6667 13.3334 11.6667M7.50002 7.5H7.50835M12.5 7.5H12.5084"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#FFD230" />
+                        </svg>
+                    </div>
+                    <div class="genre-info">
+                        <h3>Comedy</h3>
+                        <p>Feel good</p>
+                    </div>
+                    <span class="genre-arrow">❯</span>
+                </div>
+                <div class="genre-card genre-card-horror">
+                    <!-- <div class="genre-icon">🔮</div> -->
+                    <div class="genre-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4.16667 16.6667V8.33333C4.16667 6.78624 4.78125 5.30251 5.87522 4.20854C6.96918 3.11458 8.45291 2.5 10 2.5C11.5471 2.5 13.0308 3.11458 14.1248 4.20854C15.2188 5.30251 15.8333 6.78624 15.8333 8.33333V16.6667L13.3333 15L11.6667 16.6667L10 15L8.33334 16.6667L6.66667 15L4.16667 16.6667Z"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#C4B4FF" />
+                            <path d="M7.5 8.33334H7.50833M12.5 8.33334H12.5083" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" stroke="#C4B4FF" />
+                        </svg>
+
+                    </div>
+                    <div class="genre-info">
+                        <h3>Horror</h3>
+                        <p>After midnight</p>
+                    </div>
+                    <span class="genre-arrow">❯</span>
+                </div>
+                <div class="genre-card genre-card-anime">
+                    <!-- <div class="genre-icon">🧬</div> -->
+                    <div class="genre-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_200_341)">
+                                <path
+                                    d="M9.99999 2.5L11 5.66667L14.1667 6.66667L11 7.66667L9.99999 10.8333L8.99999 7.66667L5.83333 6.66667L8.99999 5.66667L9.99999 2.5Z"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke="#74D4FF" />
+                                <path
+                                    d="M15 11.6667L15.5833 13.5833L17.5 14.1667L15.5833 14.75L15 16.6667L14.4167 14.75L12.5 14.1667L14.4167 13.5833L15 11.6667ZM4.16667 10L4.75 11.9167L6.66667 12.5L4.75 13.0833L4.16667 15L3.58334 13.0833L1.66667 12.5L3.58334 11.9167L4.16667 10Z"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke="#74D4FF" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_200_341">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="genre-info">
+                        <h3>Anime</h3>
+                        <p>New worlds</p>
+                    </div>
+                    <span class="genre-arrow">❯</span>
+                </div>
+            </section>
+
+            <!-- BLOQUE 1: Carrusel 1 - Tendencia Mundial -->
+            <section class="explore-carousel-section">
+                <div class="carousel-header">
+                    <div class="carousel-titles">
+                        <span class="carousel-tag">EN TODO EL MUNDO HOY</span>
+                        <h2>Tendencia mundial</h2>
+                    </div>
+                    <div class="carousel-arrows">
+                        <button class="arrow-btn btn-left">❮</button>
+                        <button class="arrow-btn btn-right">❯</button>
+                    </div>
+                </div>
+                <!-- JS inyectará las tarjetas aquí -->
+                <div class="movies-carousel-grid ranked" id="tendencias-grid"></div>
+            </section>
+
+            <!-- BLOQUE 2: Carrusel 2 - Recién puesto en CineVerse -->
+            <section class="explore-carousel-section">
+                <div class="carousel-header">
+                    <div class="carousel-titles">
+                        <span class="carousel-tag">RECIÉN AÑADIDO</span>
+                        <h2>Recién puesto en CineVerse</h2>
+                    </div>
+                    <div class="carousel-arrows">
+                        <button class="arrow-btn btn-left">❮</button>
+                        <button class="arrow-btn btn-right">❯</button>
+                    </div>
+                </div>
+                <!-- JS inyectará las tarjetas aquí -->
+                <div class="movies-carousel-grid standard" id="recientes-grid"></div>
+            </section>
+
+        </div>
+
+
+
+    </main>
+
+    <!-- <script src="https://jquery.com"></script> -->
+
+    <!-- Enlace a la lógica de programación -->
+    <script src="global.js"></script>
+    <script src="explore.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,382 @@
+/* ==========================================================================
+   HOJA DE ESTILOS EXCLUSIVA: PÁGINA EXPLORA (explore-style.css)
+   ========================================================================== */
+.main-content {
+    flex: 1;
+        margin-left: 260px;
+        padding: 2rem 3rem;
+        background: linear-gradient(180deg, #0A0B10 0%, #06070A 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    
+        /* 🛠️ OPCIONAL: Asegura la distribución interna si usas monitores Ultra-Wide */
+        justify-content: flex-start;
+        min-width: 0;
+        overflow: hidden;
+}
+
+.container-explore {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    width: 100%;
+    max-width: 1600px;
+    overflow: hidden;
+    margin: 0 auto;    /* Calcula automáticamente márgenes iguales a izquierda y derecha */ 
+    overflow: hidden;
+}
+
+/* --- 1. ENCABEZADO DE INTRODUCCIÓN Y FILTROS --- */
+.explore-intro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    width: 100%;
+}
+
+.explore-subtitle {
+    font-size: 0.75rem;
+    color: var(--accent-blue);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.explore-main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.3rem 0;
+}
+
+.explore-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    max-width: 650px;
+    line-height: 1.5;
+}
+
+/* Selectores de filtrado minimalistas */
+.explore-selects-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid #1E293B;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+}
+
+.select-wrapper label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+.select-wrapper select {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+}
+
+
+/* --- Estado activo de la tarjeta de género al ser seleccionada --- */
+.genre-card--active {
+    border-color: var(--accent-blue, #2563eb) !important;
+    box-shadow: 0 0 0 1.5px var(--accent-blue, #2563eb), 0 4px 15px rgba(37, 99, 235, 0.35);
+    transform: translateY(-2px);
+}
+
+/* --- 2. CUADRÍCULA DE TARJETAS DE GÉNERO --- */
+.section-genres-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.genre-card {
+    background: linear-gradient(135deg, #131520 0%, #0E1017 100%);
+    border: 1px solid #1F2335;
+    border-radius: 12px;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.genre-card:hover {
+    transform: translateY(-3px);
+    /* border-color: var(--accent-blue); */
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.genre-card span:hover {
+    color: white;
+}
+
+.genre-icon {
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.genre-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.genre-info p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.genre-arrow {
+    margin-left: auto;
+    color: #374151;
+    font-size: 0.8rem;
+}
+
+
+.genre-card-action{
+    background: radial-gradient(circle at 10% 100%, #432218, #1e1118);   
+}
+.genre-card-comedy{
+    background: radial-gradient(circle at 10% 100%, #372718, #1b1717);
+}
+.genre-card-horror{
+    background: radial-gradient(circle at 10% 100%, #2b1f4b, #201733);
+}
+.genre-card-anime{
+    background: radial-gradient(circle at 10% 100%, #133249, #0f1826);
+}
+
+.genre-card-action .genre-card-comedy .genre-card-horror .genre-card-anime:hover{
+    color: white;
+}
+
+
+.rating-star {
+    color: #fbbf24;
+    font-size: 0.85rem;
+    margin-right: 1px;
+}
+
+
+
+.explore-poster-box {
+    position: relative;
+    /* Obligatorio para anclar el número y el bookmark */
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* --- 3. INFRAESTRUCTURA DE LOS CARRUSELES (FLECHAS Y TILES) --- */
+.explore-carousel-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.carousel-tag {
+    font-size: 0.7rem;
+    color: var(--accent-blue);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.carousel-header h2 {
+    font-size: 1.4rem;
+    margin-top: 0.2rem;
+}
+
+.carousel-arrows {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.arrow-btn {
+    background-color: #131520;
+    border: 1px solid #1F2335;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    transition: background-color 0.2s;
+}
+
+.arrow-btn:hover {
+    background-color: var(--accent-blue);
+}
+
+/* El carrusel interactivo con Flexbox para permitir desbordamiento horizontal */
+.movies-carousel-grid {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    /* 🔥 Asegura que herede el ancho limitado del padre */
+    max-width: 100%;
+    overflow-x: auto;
+    /* Permite el deslizamiento interno */
+    scroll-behavior: smooth;
+    padding: 1rem 0.5rem;
+}
+
+/* Ocultamos las barras de desplazamiento por defecto de todos los navegadores */
+.movies-carousel-grid::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+/* --- 4. CONFIGURACIÓN DE NÚMEROS DE RANKING (TENDENCIA MUNDIAL) --- */
+.rank-number {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    z-index: 3;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85),
+        0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* El recuadro del póster se mantiene alineado sin márgenes forzados */
+.ranked .explore-poster-box {
+    margin-left: 0;
+}
+
+
+
+
+.movies-carousel-grid {
+    scrollbar-width: none;
+}
+
+
+.explore-poster-box img:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+/* Ancho e infraestructura fija para que las portadas no se aplasten */
+.movie-rank-card,
+.movie-standard-card {
+    flex: 0 0 185px;
+    /* Obliga a cada tarjeta a medir exactamente 185px */
+    display: flex;
+    flex-direction: column;
+}
+
+.explore-poster-box {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+
+}
+
+.explore-poster-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-bookmark {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(11, 12, 18, 0.7);
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    z-index: 10;
+}
+
+.explore-movie-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.6rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.explore-movie-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.match-text {
+    color: #10B981;
+    font-weight: bold;
+}
+
+
+
+
+/* --- 5. RESPONSIVE DESIGN DE LA PÁGINA EXPLORA --- */
+@media (max-width: 1024px) {
+    .explore-intro-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .explore-selects-group {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .section-genres-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .section-genres-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .explore-selects-group {
+        flex-wrap: wrap;
+    }
+}

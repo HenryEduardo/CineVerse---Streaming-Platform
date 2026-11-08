@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVerse - Streaming Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ASIDE: Barra lateral izquierda -->
+    <aside class="sidebar" id="sidebar">
+        <!-- El resto del contenido de tu aside se queda EXACTAMENTE IGUAL -->
+        <a href="index.html" class="container-logo">
+            <div class="logo-box">
+                <svg class="logo-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5 3.33331H15C16.3807 3.33331 17.5 4.4526 17.5 5.83331V14.1666C17.5 15.5474 16.3807 16.6666 15 16.6666H5C3.61929 16.6666 2.5 15.5474 2.5 14.1666V5.83331C2.5 4.4526 3.61929 3.33331 5 3.33331V3.33331"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+                    <path
+                        d="M5.83333 3.33331V16.6666M14.1667 3.33331V16.6666M2.5 7.49998H5.83333M14.1667 7.49998H17.5M2.5 12.5H5.83333M14.1667 12.5H17.5"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+                </svg>
+            </div>
+            <div class="text-logo">
+                <p class="text-logo-2"><span class="text-wrapper">Cine</span><span class="span">Verse</span></p>
+            </div>
+        </a>
+        <nav class="menu">
+            <p class="menu-label">MENU</p>
+            <a href="index.html" class="menu-item active"><i class="fa-solid fa-house"></i>Inicio</i></a>
+            <a href="explore.html" class="menu-item"><i class="fa-solid fa-compass"></i>Explora</i></a>
+            <!-- <a href="#" class="menu-item">Lista de seguimiento</a> -->
+            <a href="favoritos.html" class="menu-item"><i class="fa-solid fa-heart"></i>Favoritos</a>
+            <a href="settings.html" class="menu-item"><i class="fa-solid fa-gear"></i>Settings</a>
+        </nav>
+        <div class="premium-badge">
+            <p class="premium-status">● Premium active</p>
+            <p class="premium-text">Unlimited movies and shows in stunning 4K.</p>
+        </div>
+    </aside>
+
+    <!-- MAIN: Bloque contenedor de la derecha -->
+    <main class="main-content">
+
+        <!-- HEADER CORREGIDO: Ahora contiene el botón hamburguesa -->
+        <header class="top-header">
+            <div class="header-right">
+                <!-- Verifica que tenga el id="hamburger-btn" exacto -->
+                <button class="hamburger-menu" id="hamburger-btn">☰</button>
+
+                <div class="search-box">
+                    <!-- <span class="search-icon">🔍</span> -->
+                    <img class="search-icon" id="global-search" src="assets/search.svg" alt="search">
+                    <input type="text" id="global-search" placeholder="Search movies, TV shows...">
+                </div>
+            </div>
+
+            <!-- CAMPANA Y PERFIL-->
+            <div class="user-profile">
+                <!-- <button class="btn-icon-nav">🔔
+                </button> -->
+                <div class="button-notifications">
+                    <div class="div">
+                        <svg class="search-box" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15 6.66669C15 3.90711 12.7596 1.66669 10 1.66669C7.24042 1.66669 5 3.90711 5 6.66669C5 12.5 2.5 12.5 2.5 14.1667H17.5C17.5 12.5 15 12.5 15 6.66669V6.66669"
+                                stroke="#CAD5E2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8.33337 17.5H11.6667" stroke="#CAD5E2" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg class="point-box" width="8" height="8" viewBox="0 0 8 8" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="6" height="6" rx="3" fill="#2B7FFF" stroke="#020618"
+                                stroke-width="1" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="avatar">AM</div>
+            </div>
+        </header>
+
+
+        <!-- El resto del código de tu .container (Section 1 y Section 2) se queda EXACTAMENTE IGUAL -->
+
+
+        <!-- CONTAINER: Agrupa tus dos secciones -->
+        <div class="container">
+
+            <!-- SECTION 1: Próximo Estreno (Hero Banner de Avengers) -->
+            <section class="section-hero">
+                <div class="hero-content">
+                    <!-- <span class="badge-trend">PRÓXIMO ESTRENO 9.1 2027 • 2h 18m</span> -->
+
+
+                    <div class="hero-text">
+                        <span class="badge-trend">PRÓXIMO ESTRENO </span>
+                        <div class="star-box">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="width: 95,5%; height: 95,42%; position: relative; top: 2px">
+                                <path
+                                    d="M8 2L9.86667 5.8L14 6.4L11 9.33333L11.7333 13.4667L8 11.4667L4.26667 13.4667L5 9.33333L2 6.4L6.13333 5.8L8 2Z"
+                                    fill="#FFB900" />
+                                <path
+                                    d="M8 2L9.86667 5.8L14 6.4L11 9.33333L11.7333 13.4667L8 11.4667L4.26667 13.4667L5 9.33333L2 6.4L6.13333 5.8L8 2V2"
+                                    stroke="#FFB900" stroke-width="1.2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> 9.1
+                        </div>
+                        <span class="span-date">2027 • 2h 18m</span>
+                    </div>
+                </div>
+                <h1 class="hero-title">Avengers: Doomsday</h1>
+                <div class="hero-description">
+                    <p class="p-description">
+                        Avengers: Doomsday trata sobre la colisión de múltiples universos y una amenaza existencial que
+                        obliga a los héroes de distintas realidades a unirse.
+                    </p>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn-play">
+                        <a href="https://youtu.be/lAr_uspgHm8?si=ATDYWbqUeEOZF54f" target="_blank"
+                            rel="noopener noreferrer">
+                            ▶ Play trailer
+                        </a>
+                    </button>
+                    <button class="btn-add">+ Añadir a Siguiente</button>
+                </div>
+        </div>
+        </section>
+
+        <!-- SECTION 2: Las tarjetas de películas más populares -->
+        <section class="section-movies">
+            <div class="section-header">
+                <div class="section-title-group">
+                    <span class="subtitle">PARA TI</span>
+                    <h2 class="main-section-title">Las películas más populares</h2>
+                </div>
+                <a href="#" class="view-all">View all ❯</a>
+            </div>
+
+            <!-- Botones de categorías de género -->
+            <div class="filter-buttons" id="filter-container">
+                <!-- JavaScript pintará los botones aquí para controlar cuál está activo -->
+            </div>
+
+            <!-- Cuadrícula vacía donde JavaScript inyectará las tarjetas de las películas -->
+            <div class="movies-grid" id="movies-grid">
+                <div class="movie-card">
+                    <div class="poster-container">
+                        <h3 class="movie-title"></h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </div> <!-- Fin de .container -->
+
+    </main>
+
+    <!-- <script src="https://jquery.com"></script> -->
+
+    <!-- Enlace a la lógica de programación -->
+    <script src="app.js"></script>
+    <script src="global.js"></script>
+</body>
+
+</html>
