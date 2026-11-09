@@ -1,6 +1,6 @@
 // Base de datos de películas basadas en la UI original
 const catalogData = [
-    { id: 1, title: "Dune: Part Two", year: 2025, type: "movie", genre: "Sci-Fi", rating: "9.5", img: "assets/Dune.png" },
+    { id: 1, title: "Dune: Part Two", year: 2025, type: "movie", genre: "Sci-Fi", rating: "9.5", img: "assets/dune.png" },
     { id: 2, title: "The Last Signal", year: 2024, type: "series", genre: "Mystery", rating: "6.2", img: "assets/The_Last_Signal_poster.png" },
     { id: 3, title: "Beyond the Divide", year: 2023, type: "movie", genre: "Adventure", rating: "7.8", img: "assets/Beyond_the_Divi_poster.png" },
     { id: 4, title: "Nocturne", year: 2024, type: "movie", genre: "Sci-Fi", rating: "8.0", img: "assets/Nocturne_poster.png" },
