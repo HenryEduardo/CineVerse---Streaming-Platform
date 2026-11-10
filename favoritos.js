@@ -1,4 +1,6 @@
-// Base de datos de películas basadas en la UI original
+// ==========================================================================
+// 1. BASE DE DATOS DE PELÍCULAS (CATÁLOGO)
+// ==========================================================================
 const catalogData = [
     { id: 1, title: "Dune: Part Two", year: 2025, type: "movie", genre: "Sci-Fi", rating: "9.5", img: "assets/dune.png" },
     { id: 2, title: "The Last Signal", year: 2024, type: "series", genre: "Mystery", rating: "6.2", img: "assets/The_Last_Signal_poster.png" },
@@ -16,7 +18,9 @@ const container = document.getElementById('movies-container');
 const totalCountEl = document.getElementById('total-count');
 const tabs = document.querySelectorAll('.tab');
 
-// FUNCIÓN PARA RENDERIZAR LAS TARJETAS
+// ==========================================================================
+// 2. FUNCIÓN ÚNICA DE RENDERIZADO (UNIFICADA Y CORREGIDA)
+// ==========================================================================
 function renderCards(movies) {
     if (!container) return; // Validación de seguridad
     container.innerHTML = "";
@@ -26,13 +30,16 @@ function renderCards(movies) {
         const card = document.createElement('div');
         card.classList.add('movie-card');
 
-        // Corregido: El corazón inicia con "fa-solid" y agregamos una clase de control para estilos
+        // Configuramos la acción de abrir el reproductor al hacer clic en la tarjeta
+        card.setAttribute('onclick', `openPlayer(${movie.id})`);
+
         card.innerHTML = `
             <div class="card-img-wrapper">
                 <img src="${movie.img}" alt="${movie.title}">
                 <div class="card-rating">
                     <i class="fa-solid fa-star"></i> ${movie.rating}
                 </div>
+                <!-- Añadida clase 'liked' inicial y el toggle funcional -->
                 <button class="btn-like" onclick="toggleLike(event, ${movie.id})">
                     <i class="fa-solid fa-heart liked"></i>
                 </button>
@@ -49,7 +56,9 @@ function renderCards(movies) {
     });
 }
 
-// LOGICA DE FILTRADO (Tabs: All, Movies, Series)
+// ==========================================================================
+// 3. LÓGICA DE FILTRADO (TABS)
+// ==========================================================================
 tabs.forEach(tab => {
     tab.addEventListener('click', (e) => {
         tabs.forEach(t => t.classList.remove('active'));
@@ -66,9 +75,11 @@ tabs.forEach(tab => {
     });
 });
 
-// FUNCIÓN PARA DAR/REMOVER LIKE (Corregida y unificada)
+// ==========================================================================
+// 4. FUNCIÓN INTERACTIVA DE FAVORITOS (LIKE)
+// ==========================================================================
 function toggleLike(event, id) {
-    event.stopPropagation(); // Evita que se abra la película al dar clic al corazón
+    event.stopPropagation(); // Evita que se abra el reproductor al dar clic al corazón
     const button = event.currentTarget;
     const icon = button.querySelector('i');
 
@@ -82,95 +93,59 @@ function toggleLike(event, id) {
     }
 }
 
-// Carga Inicial
-document.addEventListener('DOMContentLoaded', () => {
-    renderCards(catalogData);
-});
-
-
-
-
-
-// --- REPRODUCTOR DE VIDEO AVANZADO ---
-
-// Referencias a los nuevos elementos del DOM del Modal
+// ==========================================================================
+// 5. REPRODUCTOR DE VIDEO AVANZADO Y ENLACES (MODAL)
+// ==========================================================================
 const videoModal = document.getElementById('video-modal');
 const modalPlayer = document.getElementById('modal-video-player');
 const modalTitle = document.getElementById('modal-video-title');
 const modalMeta = document.getElementById('modal-video-meta');
 const closeModalBtn = document.getElementById('close-modal-btn');
 
-// URLs de Trailers de muestra para simular el reproductor
+// URLs de Trailers (Avances) en formato /embed/
 const trailerLinks = {
-    1: "https://www.youtube.com/embed/jg4-ErdQuXI", // Dune: Part Two
-    2: "https://www.youtube.com/embed/XeKNP8GjAVE", // Samples genéricos
-    3: "https://youtube.com"
+    1: "https://youtube.com", // Dune: Part Two
+    2: "https://youtube.com", // The Last Signal
+    3: "https://youtube.com"  // Beyond the Divide
 };
+
+// URLs de Películas Completas Simuladas
 const fullMovieLinks = {
-    1: "https://www.youtube.com/embed/jg4-ErdQuXI", // Dune: Part Two
-    2: "https://www.youtube.com/embed/XeKNP8GjAVE", // Samples genéricos
+    1: "https://youtube.com&controls=1", 
+    2: "https://youtube.com&controls=1", 
     3: "https://youtube.com"
 };
 
-// MODIFICACIÓN EN TU FUNCIÓN RENDER CARDS:
-// Asegúrate de añadir el atributo onclick="openPlayer(${movie.id})" a la tarjeta completa
-function renderCards(movies) {
-    if (!container) return;
-    container.innerHTML = "";
-    totalCountEl.textContent = movies.length;
-
-    movies.forEach(movie => {
-        const card = document.createElement('div');
-        card.classList.add('movie-card');
-
-        // CORREGIDO: Al hacer click en la tarjeta se abre el reproductor
-        card.setAttribute('onclick', `openPlayer(${movie.id})`);
-
-        card.innerHTML = `
-            <div class="card-img-wrapper">
-                <img src="${movie.img}" alt="${movie.title}">
-                <div class="card-rating">
-                    <i class="fa-solid fa-star"></i> ${movie.rating}
-                </div>
-                <button class="btn-like" onclick="toggleLike(event, ${movie.id})">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-                <div class="play-overlay">
-                    <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-                </div>
-            </div>
-            <div class="card-info">
-                <h3 class="movie-title">${movie.title}</h3>
-                <div class="movie-metadata">${movie.year} • ${movie.genre} • ${movie.type.charAt(0).toUpperCase() + movie.type.slice(1)}</div>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-}
+// variables de control para la película completa
+const fullMovieBtn = document.getElementById('play-full-movie-btn');
+const loadingScreen = document.getElementById('movie-loading-screen');
+let activeMovieId = null;
 
 // FUNCIÓN PARA ABRIR EL REPRODUCTOR MODAL
 function openPlayer(id) {
-    // Buscamos la película seleccionada dentro de la base de datos catalogData
     const movie = catalogData.find(item => item.id === id);
     if (!movie) return;
+
+    activeMovieId = id; // Guardamos el ID activo globalmente
+    if (loadingScreen) loadingScreen.style.display = 'none'; // Limpiamos pantalla de carga previa
 
     // Asignamos los textos dinámicos al modal
     modalTitle.textContent = movie.title;
     modalMeta.textContent = `${movie.year} • ${movie.genre} • ${movie.type.toUpperCase()}`;
 
-    // Si tenemos un enlace de video asignado lo cargamos, de lo contrario un trailer por defecto
+    // Cargamos el trailer correspondiente o uno por defecto
     const videoUrl = trailerLinks[id] || "https://youtube.com";
     modalPlayer.setAttribute('src', videoUrl);
 
-    // Activamos la clase CSS para mostrarlo en pantalla con transición
+    // Mostramos el modal
     videoModal.classList.add('open');
 }
 
 // FUNCIÓN PARA CERRAR EL REPRODUCTOR
 function closePlayer() {
-    videoModal.classList.remove('open');
-    // Es muy importante limpiar el 'src' al cerrar para pausar el audio del video de fondo
-    modalPlayer.setAttribute('src', '');
+    if (videoModal) videoModal.classList.remove('open');
+    // Forzamos el vaciado del 'src' para pausar instantáneamente cualquier audio de fondo
+    if (modalPlayer) modalPlayer.setAttribute('src', '');
 }
 
 // EVENT LISTENERS DE CIERRE
@@ -178,7 +153,6 @@ if (closeModalBtn) {
     closeModalBtn.addEventListener('click', closePlayer);
 }
 
-// Cerrar si el usuario hace clic afuera de la caja del video (en el fondo oscuro)
 if (videoModal) {
     videoModal.addEventListener('click', (e) => {
         if (e.target === videoModal) {
@@ -187,54 +161,31 @@ if (videoModal) {
     });
 }
 
-
-// ---VIDEO COMPLETO---
-// Referencias a los nuevos elementos del DOM
-const fullMovieBtn = document.getElementById('play-full-movie-btn');
-const loadingScreen = document.getElementById('movie-loading-screen');
-
-// Variable global interna para saber qué ID de película está activo
-let activeMovieId = null;
-
-// Modificación de la función openPlayer existente para guardar el ID activo
-function openPlayer(id) {
-    const movie = catalogData.find(item => item.id === id);
-    if (!movie) return;
-
-    activeMovieId = id; // Guardamos el ID de la película que abrió el usuario
-    if (loadingScreen) loadingScreen.style.display = 'none'; // Reseteamos la carga
-
-    modalTitle.textContent = movie.title;
-    modalMeta.textContent = `${movie.year} • ${movie.genre} • ${movie.type.toUpperCase()}`;
-
-    const videoUrl = trailerLinks[id] || "https://youtube.com";
-    modalPlayer.setAttribute('src', videoUrl);
-
-    videoModal.classList.add('open');
-}
-
-// LOGICA PARA SIMULAR LA PELÍCULA COMPLETA
+// ==========================================================================
+// 6. SIMULACIÓN DE REPRODUCCIÓN DE PELÍCULA COMPLETA
+// ==========================================================================
 if (fullMovieBtn) {
     fullMovieBtn.addEventListener('click', () => {
-        if (!activeMovieId) return; // Si no hay ninguna tarjeta abierta, no hace nada
+        if (!activeMovieId) return;
 
-        // 1. Mostramos la pantalla de animación de carga en el reproductor
-        loadingScreen.style.display = 'flex';
-
-        // 2. Apagamos momentáneamente el tráiler de YouTube de fondo para que no se mezclen los audios
+        // 1. Mostramos la pantalla animada de carga
+        if (loadingScreen) loadingScreen.style.display = 'flex';
+        
+        // 2. Apagamos el tráiler para que no se duplique el audio
         modalPlayer.setAttribute('src', '');
 
-        // 3. Simulamos un retraso de carga del servidor de 2 segundos
+        // 3. Retraso simulado de servidor de 2 segundos para dar realismo
         setTimeout(() => {
-            // Ocultamos la pantalla de carga
-            loadingScreen.style.display = 'none';
-
-            // 4. DINÁMICO: Buscamos el enlace de la película completa que le corresponde al ID activo
-            // Si el ID no tiene un video asignado en la lista, cargará un video de respaldo por defecto
-            const selectedFullMovie = fullMovieLinks[activeMovieId] || "https://youtube.com";
-
-            // 5. Inyectamos la película correspondiente en el reproductor modal
+            if (loadingScreen) loadingScreen.style.display = 'none';
+            
+            // 4. Cargamos de forma dinámica el enlace largo correspondiente de fullMovieLinks
+            const selectedFullMovie = fullMovieLinks[activeMovieId] || "https://youtube.com&controls=1";
             modalPlayer.setAttribute('src', selectedFullMovie);
         }, 2000);
     });
 }
+
+// Carga Inicial del Catálogo completo al abrir la ventana
+document.addEventListener('DOMContentLoaded', () => {
+    renderCards(catalogData);
+});
