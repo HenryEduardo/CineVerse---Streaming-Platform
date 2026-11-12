@@ -51,7 +51,9 @@
         <!-- HEADER CORREGIDO -->
         <header class="top-header">
             <div class="header-right">
-                <button class="hamburger-menu" id="hamburger-btn">☰</button>
+                <!-- <button class="hamburger-menu" id="hamburger-btn">☰</button> -->
+
+                <button class="hamburger-menu" id="hamburger-btn" aria-label="Abrir menú">☰</button>
 
                 <div class="search-box">
                     <!-- Corregido: Se quitó el ID duplicado de la imagen -->
@@ -116,10 +118,10 @@
     <!-- MODAL DEL REPRODUCTOR DE VIDEO CORREGIDO -->
     <div id="video-modal" class="modal-overlay">
         <div class="modal-content">
-            <button class="modal-close" id="close-modal-btn">&times;</button>
+            <button class="modal-close" id="close-modal-btn" aria-label="Cerrar reproductor">&times;</button>
             <div class="video-container">
-                <iframe id="modal-video-player" src="" frameborder="0" allow="autoplay; encrypted-media"
-                    allowfullscreen></iframe>
+                <iframe id="modal-video-player" src="about:blank" title="Reproductor de video"
+                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
 
                 <!-- Pantalla de carga simulada para la película completa -->
                 <div id="movie-loading-screen" class="loading-overlay" style="display: none;">
@@ -135,8 +137,7 @@
                     </div>
 
                     <!-- NUEVO: Botón para simular la película completa -->
-                    <button id="play-full-movie-btn" class="btn-full-movie">
-                        <i class="fa-solid fa-film"></i> Ver película completa
+                    <button id="play-full-movie-btn" class="btn-full-movie" type="button"><i class="fa-solid fa-film"></i> Ver película completa
                     </button>
                 </div>
             </div>
