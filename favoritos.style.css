@@ -145,6 +145,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2rem;
+    margin-top: 1rem;
 }
 
 /* TARJETA INDIVIDUAL (CARD) */
@@ -272,45 +273,6 @@ body {
 
 
 
-
-
-
-
-/* CONTEXTO DEL MODAL FLOTANTE */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(3, 7, 18, 0.85);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    /* Por encima de cualquier elemento */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-}
-
-/* Cuando el modal tiene la clase .open se muestra */
-.modal-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal-content {
-    background-color: #111827;
-    /* Mismo --card-bg de CineVerse */
-    width: 90%;
-    max-width: 800px;
-    border-radius: 1rem;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transform: scale(0.9);
-    transition: transform 0.4s ease;
-}
-
 .modal-overlay.open .modal-content {
     transform: scale(1);
 }
@@ -333,22 +295,7 @@ body {
     color: var(--text-main);
 }
 
-/* Contenedor Responsivo 16:9 para el Iframe */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    /* Relación de aspecto 16:9 */
-    height: 0;
-    background-color: #000;
-}
 
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 
 /* Detalles inferiores dentro del modal */
 .modal-info {
@@ -379,18 +326,38 @@ body {
 
 /* Botón premium de Película Completa */
 .btn-full-movie {
+    flex: 0 0 auto;
+    /* evita que se encoja dentro del flex */
+    min-width: max-content;
+    /* respeta el ancho del texto */
+    white-space: nowrap;
+    /* el texto no se parte */
     background-color: var(--accent-blue);
-    color: var(--text-main);
+    color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
+    font-family: inherit;
     font-weight: 600;
     font-size: 0.95rem;
+    line-height: 1.2;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    overflow: visible;
     transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-full-movie i {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.btn-full-movie:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
 }
 
 .btn-full-movie:hover {
@@ -424,5 +391,78 @@ body {
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(3, 7, 18, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal-content {
+    /* quita transform: scale(...) y su transición */
+    background-color: #111827;
+    width: 92%;
+    max-width: 800px;
+    max-height: 95dvh;
+    overflow-y: auto;
+    border-radius: 1rem;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* En móvil el encabezado del modal no debe desbordarse */
+@media (max-width: 600px) {
+    .modal-header-split {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-full-movie {
+        justify-content: center;
+        width: 100%;
+    }
+    
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+    .modal-overlay {
+        backdrop-filter: blur(8px);
     }
 }
