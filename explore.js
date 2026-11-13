@@ -20,16 +20,30 @@ const TENDENCIAS = [
     { id: 116, titulo: "Blue Hour",          anio: 2024, rating: "8.3", match: "85%", genero: "comedy",  img: "assets/Blue_Hour_poster.png" },
     { id: 117, titulo: "The Last Signal",    anio: 2024, rating: "6.2", match: "78%", genero: "anime",   img: "assets/The_Last_Signal_poster.png" },
     { id: 118, titulo: "Stone & Sky",        anio: 2023, rating: "9.2", match: "97%", genero: "anime",   img: "assets/Stone_&_Sky_poster.png" },
+    { id: 119, titulo: "Matrix Reloaded",    anio: 2003, rating: "8.5", match: "95%", genero: "action",  img: "assets/matrix.png" },
+    { id: 120, titulo: "Fin del Mundo",      anio: 2025, rating: "7.8", match: "88%", genero: "action",  img: "assets/fin_del_mundo.png" },
+    { id: 121, titulo: "Reinas del Drama",   anio: 2024, rating: "8.0", match: "89%", genero: "comedy",  img: "assets/reinas.png" },
+    { id: 122, titulo: "Alone",              anio: 2020, rating: "7.2", match: "82%", genero: "horror",  img: "assets/alone.png" },
+    { id: 123, titulo: "La Empleada",        anio: 2023, rating: "7.5", match: "84%", genero: "horror",  img: "assets/empleada.png" },
+    { id: 124, titulo: "Indiana Jones",      anio: 2023, rating: "8.1", match: "90%", genero: "action",  img: "assets/indiana.png" },
 ];
 
-// Estado global de filtrado por género
+// Estado global de filtrado
 let generoActivo = null;
+let busquedaActiva = "";
+
+// Función para normalizar texto (sin tildes, minúsculas)
+function normalizarTexto(texto) {
+    return texto
+        ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim()
+        : "";
+}
 
 // ==========================================================================
 // 2. INICIALIZACIÓN
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
-    // Al abrir la página, se muestran todas las fichas en ambos carruseles
+    configurarBuscador();
     actualizarCarruseles(null);
     configurarFiltrosGenero();
     configurarSelectGenero();
@@ -46,6 +60,17 @@ function renderTendencias(peliculas) {
     if (!container) return;
 
     container.innerHTML = "";
+
+    if (peliculas.length === 0) {
+        container.innerHTML = `
+            <div class="no-results" style="padding: 2.5rem 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                <p style="color: #fff; margin-bottom: 0.3rem;">No se encontraron películas para "<strong>${busquedaActiva}</strong>"</p>
+                <span style="font-size: 0.85rem; color: #64748b;">Intenta con otro término o desmarca el género seleccionado</span>
+            </div>
+        `;
+        return;
+    }
+
     peliculas.forEach((movie, index) => {
         const card = document.createElement("div");
         card.classList.add("movie-rank-card");
@@ -53,7 +78,7 @@ function renderTendencias(peliculas) {
             <div class="explore-poster-box">
                 <div class="rank-number">${index + 1}</div>
                 <img src="${movie.img}" alt="${movie.titulo}" onerror="this.src='https://placehold.co/185x277/131520/9ca3af?text=Sin+imagen'">
-                <button class="btn-bookmark">
+                <button class="btn-bookmark" aria-label="Guardar ${movie.titulo}">
                     <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 16V1L13 1V16L7 11L1 16Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -76,13 +101,24 @@ function renderRecientes(peliculas) {
     if (!container) return;
 
     container.innerHTML = "";
+
+    if (peliculas.length === 0) {
+        container.innerHTML = `
+            <div class="no-results" style="padding: 2.5rem 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                <p style="color: #fff; margin-bottom: 0.3rem;">No se encontraron películas para "<strong>${busquedaActiva}</strong>"</p>
+                <span style="font-size: 0.85rem; color: #64748b;">Intenta con otro término o desmarca el género seleccionado</span>
+            </div>
+        `;
+        return;
+    }
+
     peliculas.forEach(movie => {
         const card = document.createElement("div");
         card.classList.add("movie-standard-card");
         card.innerHTML = `
             <div class="explore-poster-box">
                 <img src="${movie.img}" alt="${movie.titulo}" onerror="this.src='https://placehold.co/185x277/131520/9ca3af?text=Sin+imagen'">
-                <button class="btn-bookmark">
+                <button class="btn-bookmark" aria-label="Guardar ${movie.titulo}">
                     <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 16V1L13 1V16L7 11L1 16Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -99,11 +135,27 @@ function renderRecientes(peliculas) {
     });
 }
 
-// Actualiza ambos carruseles según el filtro activo (o todos si genero === null)
-function actualizarCarruseles(genero = null) {
-    const peliculas = genero
+// Función que filtra las películas combinando género y texto de búsqueda
+function filtrarPeliculas(genero = generoActivo) {
+    let peliculas = genero
         ? TENDENCIAS.filter(m => m.genero.toLowerCase() === genero.toLowerCase())
         : TENDENCIAS;
+
+    if (busquedaActiva.trim() !== "") {
+        const query = normalizarTexto(busquedaActiva);
+        peliculas = peliculas.filter(m =>
+            normalizarTexto(m.titulo).includes(query) ||
+            normalizarTexto(m.genero).includes(query) ||
+            String(m.anio).includes(query)
+        );
+    }
+
+    return peliculas;
+}
+
+// Actualiza ambos carruseles según el filtro activo y búsqueda
+function actualizarCarruseles(genero = generoActivo) {
+    const peliculas = filtrarPeliculas(genero);
 
     renderTendencias(peliculas);
     renderRecientes(peliculas);
@@ -176,18 +228,45 @@ function configurarSelectGenre() {
         }
     });
 }
-// Alias para evitar errores si se llama con diferente nombre
 const configurarSelectGenero = configurarSelectGenre;
 
 // ==========================================================================
-// 5. LÓGICA DE INTERACTIVIDAD (FLECHAS DE DESPLAZAMIENTO)
+// 5. CONFIGURACIÓN DEL BUSCADOR GLOBAL
+// ==========================================================================
+function configurarBuscador() {
+    const searchInput = document.getElementById("global-search");
+    if (!searchInput) return;
+
+    // Verificar si viene con parámetro ?q= en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const qParam = urlParams.get('q');
+    if (qParam) {
+        searchInput.value = qParam;
+        busquedaActiva = qParam;
+    }
+
+    const ejecutarBusqueda = (e) => {
+        busquedaActiva = e.target.value;
+        actualizarCarruseles(generoActivo);
+    };
+
+    searchInput.addEventListener("input", ejecutarBusqueda);
+    searchInput.addEventListener("search", ejecutarBusqueda);
+
+    searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") e.preventDefault();
+    });
+}
+
+// ==========================================================================
+// 6. LÓGICA DE INTERACTIVIDAD (FLECHAS DE DESPLAZAMIENTO)
 // ==========================================================================
 function configurarFlechasCarrusel() {
     const secciones = document.querySelectorAll(".explore-carousel-section");
 
     secciones.forEach(seccion => {
         const btnIzquierda = seccion.querySelector(".carousel-arrows .btn-left");
-        const btnDerecha   = seccion.querySelector(".carousel-arrows .btn-right");
+        const btnDerecha = seccion.querySelector(".carousel-arrows .btn-right");
         const contenedorPeliculas = seccion.querySelector(".movies-carousel-grid");
 
         if (btnIzquierda && btnDerecha && contenedorPeliculas) {
