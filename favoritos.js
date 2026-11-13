@@ -1,5 +1,5 @@
 // ==========================================================================
-// 1. BASE DE DATOS DE PELÍCULAS (CATÁLOGO)
+// 1. BASE DE DATOS DE PELÍCULAS
 // ==========================================================================
 const catalogData = [
     { id: 1, title: "Dune: Part Two", year: 2025, type: "movie", genre: "Sci-Fi", rating: "9.5", img: "assets/dune.png" },
@@ -14,24 +14,68 @@ const catalogData = [
     { id: 10, title: "Blue Hour", year: 2024, type: "series", genre: "Crime", rating: "8.3", img: "assets/Blue_Hour_poster.png" }
 ];
 
+// ==========================================================================
+// 2. VIDEOS (solo el ID de YouTube, la URL se arma con buildEmbedUrl)
+// ==========================================================================
+// Para agregar más: copia el ID que aparece después de "v=" en el enlace de YouTube.
+// Ejemplo: https://www.youtube.com/watch?v=jg4-ErdQuXI  ->  ID = jg4-ErdQuXI
+const DEFAULT_VIDEO_ID = "jg4-ErdQuXI";
+
+const trailerIds = {
+    1: "jg4-ErdQuXI", // Dune: Part Two
+    2: "XeKNP8GjAVE", // The Last Signal (video de muestra)
+    3: "CnT6XPm41eI",
+    // 4: "ID_AQUI",
+    // ...
+};
+
+const fullMovieIds = {
+    1: "jg4-ErdQuXI",
+    2: "XeKNP8GjAVE",
+    3: "CnT6XPm41eI",
+    // 4: "ID_AQUI",
+};
+
+// Parámetros pensados para móvil: playsinline evita el pantallazo negro en iPhone.
+// No usamos autoplay porque los móviles lo bloquean.
+function buildEmbedUrl(videoId) {
+    return `https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1&modestbranding=1`;
+}
+
+// ==========================================================================
+// 3. REFERENCIAS AL DOM
+// ==========================================================================
 const container = document.getElementById('movies-container');
 const totalCountEl = document.getElementById('total-count');
 const tabs = document.querySelectorAll('.tab');
 
+const videoModal = document.getElementById('video-modal');
+const modalPlayer = document.getElementById('modal-video-player');
+const modalTitle = document.getElementById('modal-video-title');
+const modalMeta = document.getElementById('modal-video-meta');
+const closeModalBtn = document.getElementById('close-modal-btn');
+const fullMovieBtn = document.getElementById('play-full-movie-btn');
+const loadingScreen = document.getElementById('movie-loading-screen');
+
+let activeMovieId = null;   // Película abierta en el modal
+let loadingTimer = null;    // Temporizador de la "carga" de película completa
+let activeFilter = 'all';   // Filtro actual (all, movie, series)
+
 // ==========================================================================
-// 2. FUNCIÓN ÚNICA DE RENDERIZADO (UNIFICADA Y CORREGIDA)
+// 4. RENDERIZADO DE TARJETAS (una sola función)
 // ==========================================================================
 function renderCards(movies) {
-    if (!container) return; // Validación de seguridad
+    if (!container) return;
     container.innerHTML = "";
-    totalCountEl.textContent = movies.length;
+    if (totalCountEl) totalCountEl.textContent = movies.length;
 
     movies.forEach(movie => {
         const card = document.createElement('div');
         card.classList.add('movie-card');
-
-        // Configuramos la acción de abrir el reproductor al hacer clic en la tarjeta
-        card.setAttribute('onclick', `openPlayer(${movie.id})`);
+        card.dataset.id = movie.id;
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `Ver tráiler de ${movie.title}`);
 
         card.innerHTML = `
             <div class="card-img-wrapper">
@@ -39,9 +83,8 @@ function renderCards(movies) {
                 <div class="card-rating">
                     <i class="fa-solid fa-star"></i> ${movie.rating}
                 </div>
-                <!-- Añadida clase 'liked' inicial y el toggle funcional -->
-                <button class="btn-like" onclick="toggleLike(event, ${movie.id})">
-                    <i class="fa-solid fa-heart liked"></i>
+                <button class="btn-like" type="button" aria-label="Quitar de favoritos">
+                    <i class="fa-solid fa-heart"></i>
                 </button>
                 <div class="play-overlay">
                     <div class="play-btn"><i class="fa-solid fa-play"></i></div>
@@ -56,136 +99,136 @@ function renderCards(movies) {
     });
 }
 
+function applyFilter() {
+    const list = activeFilter === 'all'
+        ? catalogData
+        : catalogData.filter(item => item.type === activeFilter);
+    renderCards(list);
+}
+
 // ==========================================================================
-// 3. LÓGICA DE FILTRADO (TABS)
+// 5. FILTROS (Tabs: All, Movies, Series)
 // ==========================================================================
 tabs.forEach(tab => {
-    tab.addEventListener('click', (e) => {
+    tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
-        e.target.classList.add('active');
-
-        const filterValue = e.target.getAttribute('data-filter');
-
-        if (filterValue === 'all') {
-            renderCards(catalogData);
-        } else {
-            const filtered = catalogData.filter(item => item.type === filterValue);
-            renderCards(filtered);
-        }
+        tab.classList.add('active');
+        activeFilter = tab.getAttribute('data-filter');
+        applyFilter();
     });
 });
 
 // ==========================================================================
-// 4. FUNCIÓN INTERACTIVA DE FAVORITOS (LIKE)
+// 6. CLICS EN TARJETAS (delegación de eventos: corazón y abrir reproductor)
 // ==========================================================================
-function toggleLike(event, id) {
-    event.stopPropagation(); // Evita que se abra el reproductor al dar clic al corazón
-    const button = event.currentTarget;
+function toggleLike(button) {
     const icon = button.querySelector('i');
-
-    // Alterna la clase para rellenar (fa-solid) o vaciar (fa-regular) el icono del corazón
-    if (icon.classList.contains('fa-solid')) {
-        icon.classList.remove('fa-solid');
-        icon.classList.add('fa-regular');
-    } else {
-        icon.classList.remove('fa-regular');
-        icon.classList.add('fa-solid');
-    }
+    icon.classList.toggle('fa-solid');
+    icon.classList.toggle('fa-regular');
 }
 
-// ==========================================================================
-// 5. REPRODUCTOR DE VIDEO AVANZADO Y ENLACES (MODAL)
-// ==========================================================================
-const videoModal = document.getElementById('video-modal');
-const modalPlayer = document.getElementById('modal-video-player');
-const modalTitle = document.getElementById('modal-video-title');
-const modalMeta = document.getElementById('modal-video-meta');
-const closeModalBtn = document.getElementById('close-modal-btn');
+if (container) {
+    container.addEventListener('click', (e) => {
+        const likeBtn = e.target.closest('.btn-like');
+        if (likeBtn) {
+            e.stopPropagation(); // No abrir el reproductor al dar clic al corazón
+            toggleLike(likeBtn);
+            return;
+        }
 
-// URLs de Trailers (Avances) en formato /embed/
-const trailerLinks = {
-    1: "https://youtube.com", // Dune: Part Two
-    2: "https://youtube.com", // The Last Signal
-    3: "https://youtube.com"  // Beyond the Divide
-};
+        const card = e.target.closest('.movie-card');
+        if (card) openPlayer(Number(card.dataset.id));
+    });
 
-// URLs de Películas Completas Simuladas
-const fullMovieLinks = {
-    1: "https://youtube.com&controls=1", 
-    2: "https://youtube.com&controls=1", 
-    3: "https://youtube.com"
-};
-
-// variables de control para la película completa
-const fullMovieBtn = document.getElementById('play-full-movie-btn');
-const loadingScreen = document.getElementById('movie-loading-screen');
-let activeMovieId = null;
-
-// FUNCIÓN PARA ABRIR EL REPRODUCTOR MODAL
-function openPlayer(id) {
-    const movie = catalogData.find(item => item.id === id);
-    if (!movie) return;
-
-    activeMovieId = id; // Guardamos el ID activo globalmente
-    if (loadingScreen) loadingScreen.style.display = 'none'; // Limpiamos pantalla de carga previa
-
-    // Asignamos los textos dinámicos al modal
-    modalTitle.textContent = movie.title;
-    modalMeta.textContent = `${movie.year} • ${movie.genre} • ${movie.type.toUpperCase()}`;
-
-    // Cargamos el trailer correspondiente o uno por defecto
-    const videoUrl = trailerLinks[id] || "https://youtube.com";
-    modalPlayer.setAttribute('src', videoUrl);
-
-    // Mostramos el modal
-    videoModal.classList.add('open');
-}
-
-// FUNCIÓN PARA CERRAR EL REPRODUCTOR
-function closePlayer() {
-    if (videoModal) videoModal.classList.remove('open');
-    // Forzamos el vaciado del 'src' para pausar instantáneamente cualquier audio de fondo
-    if (modalPlayer) modalPlayer.setAttribute('src', '');
-}
-
-// EVENT LISTENERS DE CIERRE
-if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', closePlayer);
-}
-
-if (videoModal) {
-    videoModal.addEventListener('click', (e) => {
-        if (e.target === videoModal) {
-            closePlayer();
+    // Accesibilidad: abrir con Enter o Espacio desde el teclado
+    container.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        if (e.target.closest('.btn-like')) return;
+        const card = e.target.closest('.movie-card');
+        if (card) {
+            e.preventDefault();
+            openPlayer(Number(card.dataset.id));
         }
     });
 }
 
 // ==========================================================================
-// 6. SIMULACIÓN DE REPRODUCCIÓN DE PELÍCULA COMPLETA
+// 7. REPRODUCTOR MODAL
+// ==========================================================================
+function openPlayer(id) {
+    const movie = catalogData.find(item => item.id === id);
+    if (!movie) return;
+
+    activeMovieId = id;
+
+    // Reseteamos cualquier carga anterior
+    clearTimeout(loadingTimer);
+    if (loadingScreen) loadingScreen.style.display = 'none';
+
+    modalTitle.textContent = movie.title;
+    modalMeta.textContent = `${movie.year} • ${movie.genre} • ${movie.type.toUpperCase()}`;
+
+    const videoId = trailerIds[id] || DEFAULT_VIDEO_ID;
+    modalPlayer.setAttribute('src', buildEmbedUrl(videoId));
+
+    videoModal.classList.add('open');
+}
+
+function closePlayer() {
+    // Si se cierra mientras "carga" la película completa, cancelamos el temporizador
+    clearTimeout(loadingTimer);
+    if (loadingScreen) loadingScreen.style.display = 'none';
+
+    videoModal.classList.remove('open');
+    // about:blank detiene el video y el audio (un src vacío puede recargar la página)
+    modalPlayer.setAttribute('src', 'about:blank');
+    activeMovieId = null;
+}
+
+if (closeModalBtn) closeModalBtn.addEventListener('click', closePlayer);
+
+// Cerrar al hacer clic en el fondo oscuro
+if (videoModal) {
+    videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) closePlayer();
+    });
+}
+
+// Cerrar con la tecla Esc
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal && videoModal.classList.contains('open')) {
+        closePlayer();
+    }
+});
+
+// ==========================================================================
+// 8. SIMULACIÓN DE PELÍCULA COMPLETA
 // ==========================================================================
 if (fullMovieBtn) {
     fullMovieBtn.addEventListener('click', () => {
         if (!activeMovieId) return;
 
-        // 1. Mostramos la pantalla animada de carga
-        if (loadingScreen) loadingScreen.style.display = 'flex';
-        
-        // 2. Apagamos el tráiler para que no se duplique el audio
-        modalPlayer.setAttribute('src', '');
+        const idAtClick = activeMovieId;
 
-        // 3. Retraso simulado de servidor de 2 segundos para dar realismo
-        setTimeout(() => {
-            if (loadingScreen) loadingScreen.style.display = 'none';
-            
-            // 4. Cargamos de forma dinámica el enlace largo correspondiente de fullMovieLinks
-            const selectedFullMovie = fullMovieLinks[activeMovieId] || "https://youtube.com&controls=1";
-            modalPlayer.setAttribute('src', selectedFullMovie);
+        // 1. Mostramos la pantalla de carga
+        loadingScreen.style.display = 'flex';
+
+        // 2. Detenemos el tráiler para que no se mezclen los audios
+        modalPlayer.setAttribute('src', 'about:blank');
+
+        // 3. Retraso simulado de 2 segundos
+        clearTimeout(loadingTimer);
+        loadingTimer = setTimeout(() => {
+            loadingScreen.style.display = 'none';
+
+            // 4. Cargamos la película completa correspondiente (o la de respaldo)
+            const videoId = fullMovieIds[idAtClick] || DEFAULT_VIDEO_ID;
+            modalPlayer.setAttribute('src', buildEmbedUrl(videoId));
         }, 2000);
     });
 }
 
-// Carga Inicial del Catálogo completo al abrir la ventana
-document.addEventListener('DOMContentLoaded', () => {
-    renderCards(catalogData);
-});
+// ==========================================================================
+// 9. CARGA INICIAL
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', applyFilter);
