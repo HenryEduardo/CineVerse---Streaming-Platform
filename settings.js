@@ -62,4 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 6. Buscador global desde Settings: redirige a la página Explora con la búsqueda
+    const searchInput = document.getElementById("global-search");
+    if (searchInput) {
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                const q = searchInput.value.trim();
+                if (q) {
+                    window.location.href = `explore.html?q=${encodeURIComponent(q)}`;
+                }
+            }
+        });
+    }
 });
