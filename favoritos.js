@@ -60,6 +60,14 @@ const loadingScreen = document.getElementById('movie-loading-screen');
 let activeMovieId = null;   // Película abierta en el modal
 let loadingTimer = null;    // Temporizador de la "carga" de película completa
 let activeFilter = 'all';   // Filtro actual (all, movie, series)
+let searchQuery = '';       // Búsqueda actual en favoritos
+
+// Función para normalizar texto (sin tildes, minúsculas)
+function normalizarTexto(texto) {
+    return texto
+        ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim()
+        : "";
+}
 
 // ==========================================================================
 // 4. RENDERIZADO DE TARJETAS (una sola función)
@@ -68,6 +76,16 @@ function renderCards(movies) {
     if (!container) return;
     container.innerHTML = "";
     if (totalCountEl) totalCountEl.textContent = movies.length;
+
+    if (movies.length === 0) {
+        container.innerHTML = `
+            <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+                <p style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #fff;">No se encontraron películas para "<strong>${searchQuery}</strong>"</p>
+                <span style="font-size: 0.85rem; color: #64748b;">Intenta con otro título o revisa los filtros</span>
+            </div>
+        `;
+        return;
+    }
 
     movies.forEach(movie => {
         const card = document.createElement('div');
@@ -100,9 +118,19 @@ function renderCards(movies) {
 }
 
 function applyFilter() {
-    const list = activeFilter === 'all'
+    let list = activeFilter === 'all'
         ? catalogData
         : catalogData.filter(item => item.type === activeFilter);
+
+    if (searchQuery.trim() !== '') {
+        const q = normalizarTexto(searchQuery);
+        list = list.filter(item =>
+            normalizarTexto(item.title).includes(q) ||
+            normalizarTexto(item.genre).includes(q) ||
+            String(item.year).includes(q)
+        );
+    }
+
     renderCards(list);
 }
 
@@ -229,6 +257,37 @@ if (fullMovieBtn) {
 }
 
 // ==========================================================================
-// 9. CARGA INICIAL
+// 9. CONFIGURACIÓN DEL BUSCADOR GLOBAL
 // ==========================================================================
-document.addEventListener('DOMContentLoaded', applyFilter);
+function configurarBuscador() {
+    const searchInput = document.getElementById("global-search");
+    if (!searchInput) return;
+
+    // Verificar si viene con parámetro ?q= en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const qParam = urlParams.get('q');
+    if (qParam) {
+        searchInput.value = qParam;
+        searchQuery = qParam;
+    }
+
+    const ejecutarBusqueda = (e) => {
+        searchQuery = e.target.value;
+        applyFilter();
+    };
+
+    searchInput.addEventListener("input", ejecutarBusqueda);
+    searchInput.addEventListener("search", ejecutarBusqueda);
+
+    searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") e.preventDefault();
+    });
+}
+
+// ==========================================================================
+// 10. CARGA INICIAL
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    configurarBuscador();
+    applyFilter();
+});
