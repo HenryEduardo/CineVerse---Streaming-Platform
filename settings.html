@@ -134,192 +134,194 @@
             </div>
         </header>
 
-        <!-- SUB-ENCABEZADO DE AJUSTES -->
-        <section class="section-title-area">
-            <span class="sub-subtitle">PERSONAL SETTINGS</span>
-            <h1 class="main-title">Configuración</h1>
-            <p class="description">Administra los detalles de tu cuenta, suscripción y preferencias de la aplicación.
-            </p>
-        </section>
-
-        <!-- GRID DE TARJETAS DE CONFIGURACIÓN -->
-        <section class="settings-grid">
-
-            <!-- Grupo 1: Perfil y Cuenta -->
-            <div class="settings-card">
-                <div class="card-header-inline">
-                    <div class="badge"><span class="ico"><svg>
-                                <use href="#person"></use>
-                            </svg></span></div>
-                    <div>
-                        <h2 class="card-title">Mi Perfil</h2>
-                        <p class="card-subtitle">Mantén tus datos personales actualizados.</p>
-                    </div>
-                </div>
-
-                <div class="profile-edit-area">
-                    <div class="avatar large-avatar">AM</div>
-                    <div>
-                        <p class="avatar-title">Foto de perfil</p>
-                        <button class="btn-secondary-sm">Cambiar foto</button>
-                    </div>
-                </div>
-
-                <form class="settings-form" onsubmit="event.preventDefault();">
-                    <div class="form-row-split">
-                        <div class="form-group">
-                            <label>Nombre Completo</label>
-                            <input type="text" value="Alex Morgan">
-                        </div>
-                        <div class="form-group">
-                            <label>Correo Electrónico</label>
-                            <input type="email" value="alex.morgan@cineverse.com">
+        <div class="container-settings">
+            <!-- SUB-ENCABEZADO DE AJUSTES -->
+            <section class="section-title-area">
+                <span class="sub-subtitle">PERSONAL SETTINGS</span>
+                <h1 class="main-title">Configuración</h1>
+                <p class="description">Administra los detalles de tu cuenta, suscripción y preferencias de la aplicación.
+                </p>
+            </section>
+            
+            <!-- GRID DE TARJETAS DE CONFIGURACIÓN -->
+            <section class="settings-grid">
+            
+                <!-- Grupo 1: Perfil y Cuenta -->
+                <div class="settings-card">
+                    <div class="card-header-inline">
+                        <div class="badge"><span class="ico"><svg>
+                                    <use href="#person"></use>
+                                </svg></span></div>
+                        <div>
+                            <h2 class="card-title">Mi Perfil</h2>
+                            <p class="card-subtitle">Mantén tus datos personales actualizados.</p>
                         </div>
                     </div>
-                    <div class="form-actions-row">
-                        <button class="btn-text-link"><i class="fa-solid fa-key"></i> Restablecer contraseña</button>
-                        <button class="btn-save">Guardar Cambios</button>
+            
+                    <div class="profile-edit-area">
+                        <div class="avatar large-avatar">AM</div>
+                        <div>
+                            <p class="avatar-title">Foto de perfil</p>
+                            <button class="btn-secondary-sm">Cambiar foto</button>
+                        </div>
                     </div>
-                </form>
-            </div>
-
-            <!-- Grupo 2: Plan de Suscripción -->
-            <div class="settings-card premium-card-bg">
-                <div class="card-header-inline">
-                    <div class="badge"><span class="ico"><svg>
-                                <use href="#crown"></use>
-                            </svg></span></div>
-                    <div>
-                        <h2 class="card-title">Suscripción</h2>
-                        <p class="card-subtitle">Tu membresía y detalles de facturación.</p>
-                    </div>
-                </div>
-
-                <div class="plan-info-box">
-                    <span class="plan-label-tag">PLAN ACTUAL</span>
-                    <div class="plan-title-row">
-                        <h3 class="plan-main-title">CineVerse Premium 4K</h3>
-                        <span class="status-badge-online">● Activo</span>
-                    </div>
-                    <p class="plan-date">Próxima renovación: 14 de Diciembre, 2026</p>
-                </div>
-
-                <!-- Fila de características técnicas basada en la interfaz -->
-                <div class="plan-specs-row">
-                    <div class="spec-item">
-                        <span class="spec-title">4K + HDR</span>
-                        <span class="spec-desc">Calidad</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-title">4 pantallas</span>
-                        <span class="spec-desc">Dispositivos</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-title">Descargas</span>
-                        <span class="spec-desc">Offline</span>
-                    </div>
-                </div>
-
-                <button class="btn-premium-manage">Manejar Suscripción</button>
-            </div>
-
-            <!-- Grupo 3: Preferencias de la App -->
-            <div class="settings-card">
-                <div class="card-header-inline">
-                    <div class="badge"><span class="ico"><svg>
-                                <use href="#gear"></use>
-                            </svg></span></div>
-                    <div>
-                        <h2 class="card-title">Preferencias</h2>
-                        <p class="card-subtitle">Personaliza el comportamiento visual de CineVerse.</p>
-                    </div>
-                </div>
-
-                <div class="preference-row">
-                    <div>
-                        <h3>Modo Oscuro</h3>
-                        <p class="pref-desc">Optimiza la interfaz para entornos con poca luz.</p>
-                    </div>
-                    <div class="toggle on"></div>
-                </div>
-
-                <div class="preference-row">
-                    <div>
-                        <h3>Autoplay Tráilers</h3>
-                        <p class="pref-desc">Reproducir los avances automáticamente al abrir el modal.</p>
-                    </div>
-                    <div class="toggle on"></div>
-                </div>
-
-                <div class="form-group margin-top">
-                    <label>Idioma de la Interfaz</label>
-                    <p class="pref-desc">Selecciona tu idioma de visualización preferido.</p>
-                    <select class="settings-select">
-                        <option value="es" selected>Español (Latinoamérica)</option>
-                        <option value="en">English (US)</option>
-                        <option value="fr">Français</option>
-                    </select>
-                </div>
-            </div>
-
-
-
-            <!-- Grupo 4: Seguridad y Dispositivos Conectados -->
-            <div class="settings-card">
-                <div class="card-header-inline">
-                    <div class="badge"><span class="ico"><svg>
-                                <use href="#shield"></use>
-                            </svg></span></div>
-                    <div>
-                        <h2 class="card-title">Seguridad</h2>
-                        <p class="card-subtitle">Revisa los dispositivos con sesiones activas en tu cuenta.</p>
-                    </div>
-                </div>
-
-                <ul class="device-list">
-                    <li class="device-item active">
-                        <div class="device-info">
-                            <div class="badge"><span class="ico"><svg>
-                                        <use href="#monitor"></use>
-                                    </svg></span></div>
-                            <div>
-                                <p class="device-name">Chrome - Windows <span class="current-session-tag">• Sesión
-                                        actual</span>
-                                </p>
-                                <span class="device-location-status">Madrid, España</span>
+            
+                    <form class="settings-form" onsubmit="event.preventDefault();">
+                        <div class="form-row-split">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" value="Alex Morgan">
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" value="alex.morgan@cineverse.com">
                             </div>
                         </div>
-                        <span class="session-active-text">Activo</span>
-                    </li>
-                    <li class="device-item">
-                        <div class="device-info">
-                            <div class="badge"><span class="ico"><svg>
-                                        <use href="#monitor"></use>
-                                    </svg></span></div>
-                            <div>
-                                <p class="device-name">Safari - Mac</p>
-                                <span class="device-location-status">Barcelona, España • Hace 2 horas</span>
-                            </div>
+                        <div class="form-actions-row">
+                            <button class="btn-text-link"><i class="fa-solid fa-key"></i> Restablecer contraseña</button>
+                            <button class="btn-save">Guardar Cambios</button>
                         </div>
-                        <button class="btn-logout-device">Cerrar sesión</button>
-                    </li>
-                    <li class="device-item">
-                        <div class="device-info">
-                            <div class="badge"><span class="ico"><svg>
-                                        <use href="#phone"></use>
-                                    </svg></span></div>
-                            <div>
-                                <p class="device-name">CineVerse - iPhone</p>
-                                <span class="device-location-status">Madrid, España • Ayer</span>
-                            </div>
+                    </form>
+                </div>
+            
+                <!-- Grupo 2: Plan de Suscripción -->
+                <div class="settings-card premium-card-bg">
+                    <div class="card-header-inline">
+                        <div class="badge"><span class="ico"><svg>
+                                    <use href="#crown"></use>
+                                </svg></span></div>
+                        <div>
+                            <h2 class="card-title">Suscripción</h2>
+                            <p class="card-subtitle">Tu membresía y detalles de facturación.</p>
                         </div>
-                        <button class="btn-logout-device">Cerrar sesión</button>
-                    </li>
-                </ul>
-            </div>
-
-        </section>
-
+                    </div>
+            
+                    <div class="plan-info-box">
+                        <span class="plan-label-tag">PLAN ACTUAL</span>
+                        <div class="plan-title-row">
+                            <h3 class="plan-main-title">CineVerse Premium 4K</h3>
+                            <span class="status-badge-online">● Activo</span>
+                        </div>
+                        <p class="plan-date">Próxima renovación: 14 de Diciembre, 2026</p>
+                    </div>
+            
+                    <!-- Fila de características técnicas basada en la interfaz -->
+                    <div class="plan-specs-row">
+                        <div class="spec-item">
+                            <span class="spec-title">4K + HDR</span>
+                            <span class="spec-desc">Calidad</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-title">4 pantallas</span>
+                            <span class="spec-desc">Dispositivos</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-title">Descargas</span>
+                            <span class="spec-desc">Offline</span>
+                        </div>
+                    </div>
+            
+                    <button class="btn-premium-manage">Manejar Suscripción</button>
+                </div>
+            
+                <!-- Grupo 3: Preferencias de la App -->
+                <div class="settings-card">
+                    <div class="card-header-inline">
+                        <div class="badge"><span class="ico"><svg>
+                                    <use href="#gear"></use>
+                                </svg></span></div>
+                        <div>
+                            <h2 class="card-title">Preferencias</h2>
+                            <p class="card-subtitle">Personaliza el comportamiento visual de CineVerse.</p>
+                        </div>
+                    </div>
+            
+                    <div class="preference-row">
+                        <div>
+                            <h3>Modo Oscuro</h3>
+                            <p class="pref-desc">Optimiza la interfaz para entornos con poca luz.</p>
+                        </div>
+                        <div class="toggle on"></div>
+                    </div>
+            
+                    <div class="preference-row">
+                        <div>
+                            <h3>Autoplay Tráilers</h3>
+                            <p class="pref-desc">Reproducir los avances automáticamente al abrir el modal.</p>
+                        </div>
+                        <div class="toggle on"></div>
+                    </div>
+            
+                    <div class="form-group margin-top">
+                        <label>Idioma de la Interfaz</label>
+                        <p class="pref-desc">Selecciona tu idioma de visualización preferido.</p>
+                        <select class="settings-select">
+                            <option value="es" selected>Español (Latinoamérica)</option>
+                            <option value="en">English (US)</option>
+                            <option value="fr">Français</option>
+                        </select>
+                    </div>
+                </div>
+            
+            
+            
+                <!-- Grupo 4: Seguridad y Dispositivos Conectados -->
+                <div class="settings-card">
+                    <div class="card-header-inline">
+                        <div class="badge"><span class="ico"><svg>
+                                    <use href="#shield"></use>
+                                </svg></span></div>
+                        <div>
+                            <h2 class="card-title">Seguridad</h2>
+                            <p class="card-subtitle">Revisa los dispositivos con sesiones activas en tu cuenta.</p>
+                        </div>
+                    </div>
+            
+                    <ul class="device-list">
+                        <li class="device-item active">
+                            <div class="device-info">
+                                <div class="badge"><span class="ico"><svg>
+                                            <use href="#monitor"></use>
+                                        </svg></span></div>
+                                <div>
+                                    <p class="device-name">Chrome - Windows <span class="current-session-tag">• Sesión
+                                            actual</span>
+                                    </p>
+                                    <span class="device-location-status">Madrid, España</span>
+                                </div>
+                            </div>
+                            <span class="session-active-text">Activo</span>
+                        </li>
+                        <li class="device-item">
+                            <div class="device-info">
+                                <div class="badge"><span class="ico"><svg>
+                                            <use href="#monitor"></use>
+                                        </svg></span></div>
+                                <div>
+                                    <p class="device-name">Safari - Mac</p>
+                                    <span class="device-location-status">Barcelona, España • Hace 2 horas</span>
+                                </div>
+                            </div>
+                            <button class="btn-logout-device">Cerrar sesión</button>
+                        </li>
+                        <li class="device-item">
+                            <div class="device-info">
+                                <div class="badge"><span class="ico"><svg>
+                                            <use href="#phone"></use>
+                                        </svg></span></div>
+                                <div>
+                                    <p class="device-name">CineVerse - iPhone</p>
+                                    <span class="device-location-status">Madrid, España • Ayer</span>
+                                </div>
+                            </div>
+                            <button class="btn-logout-device">Cerrar sesión</button>
+                        </li>
+                    </ul>
+                </div>
+            
+            </section>
+            
+        </div>
         <!-- Identificador de pie de página opcional basado en la captura -->
         <div class="settings-footer-account">
             <p>ID de la cuenta CineVerse: CV-254019</p>
