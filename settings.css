@@ -1,8 +1,19 @@
 /* DISEÑO DE LA CUADRÍCULA DE CONFIGURACIÓN */
 
-.section-title-area {
-    padding: 20px 0 20px 0;
+.container-settings{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    gap: 3.5rem;
+    overflow: hidden;
 }
+
+
+/* .section-title-area {
+    padding: 20px 0 20px 0;
+} */
 .sub-subtitle{
     color: #3b82f6;
     font-size: 12px;
