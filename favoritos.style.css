@@ -25,6 +25,17 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+.container-favorite{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    gap: 3.5rem;
+    overflow: hidden;
+}
+
 /* Estilo seguro para el botón de me gusta y su icono */
 .btn-like {
     position: absolute;
