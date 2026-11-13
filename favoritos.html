@@ -55,10 +55,10 @@
 
                 <button class="hamburger-menu" id="hamburger-btn" aria-label="Abrir menú">☰</button>
 
-                <div class="search-box">
-                    <!-- Corregido: Se quitó el ID duplicado de la imagen -->
-                    <img class="search-icon" id="search-icon-img" src="assets/search.svg" alt="search">
-                    <input type="text" id="global-search" placeholder="Search movies, TV shows...">
+                <div class="search-box" role="search">
+                    <img class="search-icon" id="search-icon-img" src="assets/search.svg" alt="" aria-hidden="true">
+                    <input type="search" id="global-search" name="q" placeholder="Buscar películas, series..."
+                        aria-label="Buscar películas y series">
                 </div>
             </div>
 
@@ -137,7 +137,8 @@
                     </div>
 
                     <!-- NUEVO: Botón para simular la película completa -->
-                    <button id="play-full-movie-btn" class="btn-full-movie" type="button"><i class="fa-solid fa-film"></i> Ver película completa
+                    <button id="play-full-movie-btn" class="btn-full-movie" type="button"><i
+                            class="fa-solid fa-film"></i> Ver película completa
                     </button>
                 </div>
             </div>
