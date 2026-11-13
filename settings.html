@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="settings.css">
 </head>
 
-<body> 
+<body>
 
     <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -62,22 +62,22 @@
     <!-- ASIDE: Barra lateral izquierda -->
     <aside class="sidebar" id="sidebar">
         <!-- El resto del contenido de tu aside se queda EXACTAMENTE IGUAL -->
-            <a href="index.html" class="container-logo">
-                <div class="logo-box">
-                    <svg class="logo-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M5 3.33331H15C16.3807 3.33331 17.5 4.4526 17.5 5.83331V14.1666C17.5 15.5474 16.3807 16.6666 15 16.6666H5C3.61929 16.6666 2.5 15.5474 2.5 14.1666V5.83331C2.5 4.4526 3.61929 3.33331 5 3.33331V3.33331"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
-                        <path
-                            d="M5.83333 3.33331V16.6666M14.1667 3.33331V16.6666M2.5 7.49998H5.83333M14.1667 7.49998H17.5M2.5 12.5H5.83333M14.1667 12.5H17.5"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
-                    </svg>
-                </div>
-                <div class="text-logo">
-                    <p class="text-logo-2"><span class="text-wrapper">Cine</span><span class="span">Verse</span></p>
-                </div>
-            </a>
+        <a href="index.html" class="container-logo">
+            <div class="logo-box">
+                <svg class="logo-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5 3.33331H15C16.3807 3.33331 17.5 4.4526 17.5 5.83331V14.1666C17.5 15.5474 16.3807 16.6666 15 16.6666H5C3.61929 16.6666 2.5 15.5474 2.5 14.1666V5.83331C2.5 4.4526 3.61929 3.33331 5 3.33331V3.33331"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+                    <path
+                        d="M5.83333 3.33331V16.6666M14.1667 3.33331V16.6666M2.5 7.49998H5.83333M14.1667 7.49998H17.5M2.5 12.5H5.83333M14.1667 12.5H17.5"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+                </svg>
+            </div>
+            <div class="text-logo">
+                <p class="text-logo-2"><span class="text-wrapper">Cine</span><span class="span">Verse</span></p>
+            </div>
+        </a>
 
         <nav class="menu">
             <p class="menu-label">MENU</p>
@@ -102,10 +102,10 @@
                 <!-- Verifica que tenga el id="hamburger-btn" exacto -->
                 <button class="hamburger-menu" id="hamburger-btn">☰</button>
 
-                <div class="search-box">
-                    <!-- <span class="search-icon">🔍</span> -->
-                    <img class="search-icon" id="global-search" src="assets/search.svg" alt="search">
-                    <input type="text" id="global-search" placeholder="Search movies, TV shows...">
+                <div class="search-box" role="search">
+                    <img class="search-icon" id="search-icon-img" src="assets/search.svg" alt="" aria-hidden="true">
+                    <input type="search" id="global-search" name="q" placeholder="Buscar películas, series..."
+                        aria-label="Buscar películas y series">
                 </div>
             </div>
 
@@ -148,7 +148,9 @@
             <!-- Grupo 1: Perfil y Cuenta -->
             <div class="settings-card">
                 <div class="card-header-inline">
-                    <div class="badge"><span class="ico"><svg><use href="#person"></use></svg></span></div>
+                    <div class="badge"><span class="ico"><svg>
+                                <use href="#person"></use>
+                            </svg></span></div>
                     <div>
                         <h2 class="card-title">Mi Perfil</h2>
                         <p class="card-subtitle">Mantén tus datos personales actualizados.</p>
@@ -184,9 +186,9 @@
             <!-- Grupo 2: Plan de Suscripción -->
             <div class="settings-card premium-card-bg">
                 <div class="card-header-inline">
-                                        <div class="badge"><span class="ico"><svg>
-                                                    <use href="#crown"></use>
-                                                </svg></span></div>
+                    <div class="badge"><span class="ico"><svg>
+                                <use href="#crown"></use>
+                            </svg></span></div>
                     <div>
                         <h2 class="card-title">Suscripción</h2>
                         <p class="card-subtitle">Tu membresía y detalles de facturación.</p>
@@ -232,7 +234,7 @@
                         <p class="card-subtitle">Personaliza el comportamiento visual de CineVerse.</p>
                     </div>
                 </div>
-            
+
                 <div class="preference-row">
                     <div>
                         <h3>Modo Oscuro</h3>
@@ -240,7 +242,7 @@
                     </div>
                     <div class="toggle on"></div>
                 </div>
-            
+
                 <div class="preference-row">
                     <div>
                         <h3>Autoplay Tráilers</h3>
@@ -248,7 +250,7 @@
                     </div>
                     <div class="toggle on"></div>
                 </div>
-            
+
                 <div class="form-group margin-top">
                     <label>Idioma de la Interfaz</label>
                     <p class="pref-desc">Selecciona tu idioma de visualización preferido.</p>
@@ -260,7 +262,7 @@
                 </div>
             </div>
 
-            
+
 
             <!-- Grupo 4: Seguridad y Dispositivos Conectados -->
             <div class="settings-card">
@@ -277,9 +279,9 @@
                 <ul class="device-list">
                     <li class="device-item active">
                         <div class="device-info">
-                                                <div class="badge"><span class="ico"><svg>
-                                                            <use href="#monitor"></use>
-                                                        </svg></span></div>
+                            <div class="badge"><span class="ico"><svg>
+                                        <use href="#monitor"></use>
+                                    </svg></span></div>
                             <div>
                                 <p class="device-name">Chrome - Windows <span class="current-session-tag">• Sesión
                                         actual</span>
@@ -291,9 +293,9 @@
                     </li>
                     <li class="device-item">
                         <div class="device-info">
-                                                <div class="badge"><span class="ico"><svg>
-                                                            <use href="#monitor"></use>
-                                                        </svg></span></div>
+                            <div class="badge"><span class="ico"><svg>
+                                        <use href="#monitor"></use>
+                                    </svg></span></div>
                             <div>
                                 <p class="device-name">Safari - Mac</p>
                                 <span class="device-location-status">Barcelona, España • Hace 2 horas</span>
@@ -303,9 +305,9 @@
                     </li>
                     <li class="device-item">
                         <div class="device-info">
-                                                <div class="badge"><span class="ico"><svg>
-                                                            <use href="#phone"></use>
-                                                        </svg></span></div>
+                            <div class="badge"><span class="ico"><svg>
+                                        <use href="#phone"></use>
+                                    </svg></span></div>
                             <div>
                                 <p class="device-name">CineVerse - iPhone</p>
                                 <span class="device-location-status">Madrid, España • Ayer</span>
