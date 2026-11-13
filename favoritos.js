@@ -79,11 +79,11 @@ function renderCards(movies) {
 
         card.innerHTML = `
             <div class="card-img-wrapper">
-                <img src="${movie.img}" alt="${movie.title}">
+                <img src="${movie.img}" alt="Póster de ${movie.title}">
                 <div class="card-rating">
                     <i class="fa-solid fa-star"></i> ${movie.rating}
                 </div>
-                <button class="btn-like" type="button" aria-label="Quitar de favoritos">
+                <button class="btn-like" type="button" aria-label="Quitar ${movie.title} de favoritos" aria-pressed="true">
                     <i class="fa-solid fa-heart"></i>
                 </button>
                 <div class="play-overlay">
