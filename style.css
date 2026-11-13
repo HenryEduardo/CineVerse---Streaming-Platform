@@ -184,8 +184,6 @@ textarea {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
-    /* 🛠️ OPCIONAL: Asegura la distribución interna si usas monitores Ultra-Wide */
     justify-content: flex-start;
     min-width: 0;
     overflow: hidden;
@@ -213,8 +211,10 @@ textarea {
     justify-content: space-between;
     /* Separa el bloque izquierdo del derecho */
     align-items: center;
-    margin-bottom: 2rem;
+    padding-bottom: 2rem;
     width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .header-right {
