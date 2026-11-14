@@ -1,6 +1,6 @@
 /* DISEÑO DE LA CUADRÍCULA DE CONFIGURACIÓN */
 
-.container-settings{
+.container-settings {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -14,16 +14,18 @@
 /* .section-title-area {
     padding: 20px 0 20px 0;
 } */
-.sub-subtitle{
+.sub-subtitle {
     color: #3b82f6;
     font-size: 12px;
     letter-spacing: 2px;
 }
-.description{
+
+.description {
     font-size: 12px;
     letter-spacing: 1px;
 }
-.main-title{
+
+.main-title {
     padding: 10px 0 10px 0;
 }
 
@@ -111,6 +113,7 @@
     align-items: center;
     justify-content: center
 }
+
 .profile-edit-area {
     display: flex;
     align-items: center;
@@ -133,7 +136,7 @@
     margin-bottom: 0.25rem;
 }
 
-.btn-secondary-sm{
+.btn-secondary-sm {
     background-color: #0e1322;
     color: #3b82f6;
     font-size: 1rem;
@@ -341,11 +344,15 @@
     background: #202c40;
     padding: 4px;
     cursor: pointer;
-    display: inline-block;
+    /* display: inline-block; */
     flex-shrink: 0;
     box-sizing: border-box;
-    /* Transición suave para el color de fondo cuando cambia el estado */
     transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    display: inline-flex;
+    align-items: center;
+    appearance: none;
+    font: inherit;
 }
 
 .toggle:before {
@@ -371,7 +378,13 @@
     margin-left: 19px;
 }
 
-
+.toggle:focus-visible,
+.settings-select:focus-visible,
+.btn-save:focus-visible,
+.btn-premium-manage:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
 
 
 /* SECCIÓN SEGURIDAD / DISPOSITIVOS */
@@ -460,6 +473,29 @@
     font-size: 0.8rem;
     color: #9ca3af;
     letter-spacing: 0.5px;
+}
+
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    transform: translate(-50%, 1rem);
+    background: #111827;
+    color: #f3f4f6;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+    z-index: 10000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
 
 
