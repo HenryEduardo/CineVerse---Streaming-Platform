@@ -38,9 +38,26 @@ const fullMovieIds = {
 
 // Parámetros pensados para móvil: playsinline evita el pantallazo negro en iPhone.
 // No usamos autoplay porque los móviles lo bloquean.
-function buildEmbedUrl(videoId) {
-    return `https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1&modestbranding=1`;
+// function buildEmbedUrl(videoId) {
+//     return `https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1&modestbranding=1`;
+// }
+
+
+function isAutoplayEnabled() {
+    try {
+        const saved = JSON.parse(localStorage.getItem('cineverse-settings'));
+        return saved ? saved.autoplay !== false : true;
+    } catch {
+        return true;
+    }
 }
+
+function buildEmbedUrl(videoId) {
+    const base = `https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1&modestbranding=1`;
+    // El autoplay solo funciona en móvil si el video empieza sin sonido (mute=1)
+    return isAutoplayEnabled() ? `${base}&autoplay=1&mute=1` : base;
+}
+
 
 // ==========================================================================
 // 3. REFERENCIAS AL DOM
