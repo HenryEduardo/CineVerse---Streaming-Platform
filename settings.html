@@ -61,7 +61,6 @@
 
     <!-- ASIDE: Barra lateral izquierda -->
     <aside class="sidebar" id="sidebar">
-        <!-- El resto del contenido de tu aside se queda EXACTAMENTE IGUAL -->
         <a href="index.html" class="container-logo">
             <div class="logo-box">
                 <svg class="logo-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -96,7 +95,7 @@
     <!-- MAIN: Bloque contenedor de la derecha -->
     <main class="main-content">
 
-        <!-- HEADER CORREGIDO: Ahora contiene el botón hamburguesa -->
+        <!-- Botón hamburguesa -->
         <header class="top-header">
             <div class="header-right">
                 <!-- Verifica que tenga el id="hamburger-btn" exacto -->
@@ -169,17 +168,19 @@
                     <form class="settings-form" onsubmit="event.preventDefault();">
                         <div class="form-row-split">
                             <div class="form-group">
-                                <label>Nombre Completo</label>
-                                <input type="text" value="Alex Morgan">
+                                <label for="profile-name">Nombre completo</label>
+                                <input type="text" id="profile-name" name="name" autocomplete="name" value="Alex Morgan" required>
                             </div>
                             <div class="form-group">
-                                <label>Correo Electrónico</label>
-                                <input type="email" value="alex.morgan@cineverse.com">
+                                <label for="profile-email">Correo electrónico</label>
+                                <input type="email" id="profile-email" name="email" autocomplete="email" value="alex.morgan@cineverse.com" required>
                             </div>
                         </div>
                         <div class="form-actions-row">
-                            <button class="btn-text-link"><i class="fa-solid fa-key"></i> Restablecer contraseña</button>
-                            <button class="btn-save">Guardar Cambios</button>
+                            <button type="button" class="btn-text-link" id="reset-password-btn"><i class="fa-solid fa-key"></i> Restablecer
+                                contraseña</button>
+                            <button type="submit" class="btn-save">Guardar cambios</button>
+
                         </div>
                     </form>
                 </div>
@@ -238,24 +239,26 @@
             
                     <div class="preference-row">
                         <div>
-                            <h3>Modo Oscuro</h3>
-                            <p class="pref-desc">Optimiza la interfaz para entornos con poca luz.</p>
+                            <h3 id="pref-dark-label">Modo oscuro</h3>
+                            <p class="pref-desc" id="pref-dark-desc">Optimiza la interfaz para entornos con poca luz.</p>
                         </div>
-                        <div class="toggle on"></div>
+                        <button type="button" class="toggle on" role="switch" aria-checked="true" data-setting="darkMode"
+                            aria-labelledby="pref-dark-label" aria-describedby="pref-dark-desc"></button>
                     </div>
-            
+
                     <div class="preference-row">
                         <div>
-                            <h3>Autoplay Tráilers</h3>
-                            <p class="pref-desc">Reproducir los avances automáticamente al abrir el modal.</p>
+                            <h3 id="pref-autoplay-label">Reproducción automática de tráilers</h3>
+                            <p class="pref-desc" id="pref-autoplay-desc">Reproducir los avances (sin sonido) al abrir el modal.</p>
                         </div>
-                        <div class="toggle on"></div>
+                        <button type="button" class="toggle on" role="switch" aria-checked="true" data-setting="autoplay"
+                            aria-labelledby="pref-autoplay-label" aria-describedby="pref-autoplay-desc"></button>
                     </div>
             
                     <div class="form-group margin-top">
-                        <label>Idioma de la Interfaz</label>
+                        <label for="language-select">Idioma de la interfaz</label>
                         <p class="pref-desc">Selecciona tu idioma de visualización preferido.</p>
-                        <select class="settings-select">
+                        <select id="language-select" class="settings-select">
                             <option value="es" selected>Español (Latinoamérica)</option>
                             <option value="en">English (US)</option>
                             <option value="fr">Français</option>
@@ -287,7 +290,7 @@
                                     <p class="device-name">Chrome - Windows <span class="current-session-tag">• Sesión
                                             actual</span>
                                     </p>
-                                    <span class="device-location-status">Madrid, España</span>
+                                    <span class="device-location-status">Lima, Perú</span>
                                 </div>
                             </div>
                             <span class="session-active-text">Activo</span>
@@ -299,7 +302,7 @@
                                         </svg></span></div>
                                 <div>
                                     <p class="device-name">Safari - Mac</p>
-                                    <span class="device-location-status">Barcelona, España • Hace 2 horas</span>
+                                    <span class="device-location-status">Lima, Perú • Hace 2 horas</span>
                                 </div>
                             </div>
                             <button class="btn-logout-device">Cerrar sesión</button>
@@ -311,7 +314,7 @@
                                         </svg></span></div>
                                 <div>
                                     <p class="device-name">CineVerse - iPhone</p>
-                                    <span class="device-location-status">Madrid, España • Ayer</span>
+                                    <span class="device-location-status">Lima, Perú • Ayer</span>
                                 </div>
                             </div>
                             <button class="btn-logout-device">Cerrar sesión</button>
